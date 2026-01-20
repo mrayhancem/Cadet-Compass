@@ -4,6 +4,7 @@
   <meta charset='utf-8' />
   <meta name='viewport' content='width=device-width, initial-scale=1' />
   <title>Credits | Cadet Compass</title>
+  <meta name='description' content='Credits, tool attribution, and primary sources for Cadet Compass.' />
   <link rel='stylesheet' href='assets/styles.css' />
 </head>
 <body>
@@ -16,7 +17,7 @@
           <div class='subtitle'>AI-assisted military pathway advising (Grades 8–12)</div>
         </div>
       </div>
-      
+
       <nav class='links'>
         <a class='' href='index.html'>Home</a>
         <a class='' href='roadmap.html'>8–12 Roadmap</a>
@@ -26,35 +27,75 @@
         <a class='' href='toolkit.html'>Toolkit</a>
         <a class='' href='chat.html'>AI Coach</a>
       </nav>
-
     </div>
   </header>
-  <main class='wrap'>
-    
-<section class='card'>
-  <h1 class='h1'>Credits & Sources</h1>
-  <p class='muted'>This project uses original graphics and links to official public sources for verification. If you add photos or videos, use U.S. government public domain or Creative Commons with attribution.</p>
-  <h2 class='h2'>Official links used</h2>
-  <ul class='muted'>
-    <li>West Point Admissions (USMA)</li>
-    <li>Naval Academy Admissions (USNA)</li>
-    <li>Air Force Academy Admissions (USAFA)</li>
-    <li>Coast Guard Academy Admissions (USCGA)</li>
-    <li>Merchant Marine Academy Admissions (USMMA)</li>
-    <li>Army/Navy/Air Force ROTC official sites</li>
-    <li>Official branch recruiting sites</li>
-  </ul>
-  <h2 class='h2'>AI tools</h2>
-  <ul class='muted'>
-    <li>Text generation and content drafting: OpenAI ChatGPT (documented in the submission PDF).</li>
-  </ul>
-</section>
 
+  <main class='wrap'>
+    <section class='card'>
+      <span class='pill'>Credits</span>
+      <h1 class='h1'>Credits and Source Attribution</h1>
+      <p class='lead'>
+        This project is a Track III (Educator) submission for the Presidential AI Challenge. It combines
+        educator-authored guidance with official-source verification links and an AI Coach (optional) that
+        provides safe, general advising.
+      </p>
+      <div class='callout warn'>
+        <strong>Important:</strong> Requirements can change. Cadet Compass always instructs users to verify details on official sources.
+      </div>
+    </section>
+
+    <section class='grid2'>
+      <div class='card'>
+        <h2 class='h2'>AI tools and platforms</h2>
+        <ul class='muted'>
+          <li><strong>OpenAI API</strong> (text model via a Netlify Function) for the optional “AI Coach” responses.</li>
+          <li><strong>Netlify</strong> for hosting and serverless functions (API endpoint for chat).</li>
+          <li><strong>GitHub</strong> for version control and public source repository.</li>
+        </ul>
+
+        <div class='small muted'>
+          Note: The site remains usable even without the AI function enabled, via a local knowledge-base fallback (data/knowledge.json).
+        </div>
+      </div>
+
+      <div class='card'>
+        <h2 class='h2'>Primary sources used (official)</h2>
+        <p class='muted'>Cadet Compass links to and/or is informed by official program pages such as:</p>
+        <ul class='muted'>
+          <li>U.S. Service Academy admissions pages (USMA, USNA, USAFA, USMMA, USCGA).</li>
+          <li>ROTC official program pages (Army ROTC, Navy ROTC, Air Force ROTC).</li>
+          <li>Military recruiting and enlistment information pages (branch recruiting sites).</li>
+          <li>ASVAB information resources (official ASVAB program and DoD-related references).</li>
+        </ul>
+
+        <div class='callout'>
+          <div class='small muted'>
+            The “Student Toolkit” page consolidates official links so students can verify eligibility, steps, and timelines.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class='card'>
+      <h2 class='h2'>Graphics and design</h2>
+      <ul class='muted'>
+        <li><strong>Logo:</strong> Compass mark (SVG) included in project assets (assets/compass.svg).</li>
+        <li><strong>Site UI:</strong> Custom HTML/CSS (assets/styles.css) and JavaScript.</li>
+      </ul>
+    </section>
+
+    <section class='card'>
+      <h2 class='h2'>Repository</h2>
+      <p class='muted'>
+        Source code and project files:
+        <a href='https://github.com/mrayhancem/Cadet-Compass' target='_blank' rel='noopener'>https://github.com/mrayhancem/Cadet-Compass</a>
+      </p>
+    </section>
   </main>
+
   <footer class='wrap foot'>
     <div>Cadet Compass • Track III Educator Project • Free hosting: GitHub Pages + Netlify</div>
     <div class='footLinks'><a href='credits.html'>Credits</a> • <a href='responsible-ai.html'>Responsible AI</a> • <a href='demo.html'>Demo</a></div>
   </footer>
-  <script src='js/app.js'></script>
 </body>
 </html>
