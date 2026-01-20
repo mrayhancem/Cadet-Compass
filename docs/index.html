@@ -2,128 +2,131 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Cadet Compass | Military Pathways (Grades 8–12)</title>
-  <meta name="description" content="Educator-built, AI-assisted guidance for Service Academies, ROTC, Enlistment, National Guard, and Reserves." />
-  <link rel="stylesheet" href="assets/styles.css" />
+  <meta name="description" content="Cadet Compass is an AI-assisted military pathway advising tool for grades 8–12: Service Academies, ROTC, Guard/Reserve, and Enlistment." />
+
+  <link rel="stylesheet" href="./assets/styles.css" />
 </head>
+
 <body>
-  <header class="top">
-    <div class="wrap nav">
-      <div class="brand">
-        <img src="assets/compass.svg" alt="Cadet Compass logo" />
-        <div>
-          <div class="title">Cadet Compass</div>
-          <div class="subtitle">AI-assisted military pathway advising (Grades 8–12)</div>
-        </div>
-      </div>
-      <nav class="links">
-        <a href="roadmap.html">8–12 Roadmap</a>
-        <a href="academies.html">Service Academies</a>
-        <a href="rotc.html">ROTC</a>
-        <a href="enlistment.html">Enlistment</a>
-        <a href="toolkit.html">Student Toolkit</a>
-        <a class="pill" href="chat.html">AI Coach</a>
-      </nav>
+  <div class="top-nav">
+    <div style="display:flex; gap:10px; align-items:center;">
+      <a href="./index.html" style="font-weight:700; color: var(--text);">Cadet Compass</a>
     </div>
-  </header>
 
-  <main class="wrap">
-    <section class="hero">
-      <div class="heroText">
+    <div style="display:flex; gap:6px; flex-wrap:wrap; justify-content:flex-end;">
+      <a href="./roadmap.html">8–12 Roadmap</a>
+      <a href="./academies.html">Service Academies</a>
+      <a href="./rotc.html">ROTC</a>
+      <a href="./enlistment.html">Enlistment</a>
+      <a href="./resources.html">Student Toolkit</a>
+      <a class="btn" href="./chat.html" style="padding:6px 10px; border-radius:999px;">AI Coach</a>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="hero">
+      <div class="logo-wrap">
+        <img src="./assets/compass.svg" alt="Cadet Compass logo">
+      </div>
+
+      <div>
         <h1>From Grade 8 to Graduation: one clear path to Service Academies, ROTC, Guard/Reserve, or Enlistment.</h1>
-        <p class="lead">Cadet Compass is a counselor-built website and AI tool. It organizes military options into a single, student-friendly roadmap, then uses AI to personalize next steps, check readiness, and prevent missed deadlines.</p>
-        <div class="ctaRow">
-          <a class="btn primary" href="toolkit.html">Start the Student Toolkit</a>
-          <a class="btn" href="demo.html">Open the Digital Demo</a>
-        </div>
-        <div class="note">
-          <strong>Privacy:</strong> This site does not require student logins. The AI Coach can run in “offline mode” (no data sent anywhere) or “live mode” (API-based) depending on the school’s settings.
-        </div>
-      </div>
-      <div class="heroCard">
-        <div class="kpi">
-          <div class="k">Designed for</div>
-          <div class="v">Texas students (8–12)</div>
-        </div>
-        <div class="kpi">
-          <div class="k">Pathways covered</div>
-          <div class="v">Academies, ROTC, Enlistment, Guard/Reserve</div>
-        </div>
-        <div class="kpi">
-          <div class="k">What AI does</div>
-          <div class="v">Matches pathway, builds timeline, flags gaps</div>
-        </div>
-        <hr class="sep" />
-        <div class="small">
-          <strong>Quick start:</strong>
-          <ol>
-            <li>Open <a href="roadmap.html">8–12 Roadmap</a>.</li>
-            <li>Run the <a href="toolkit.html">Readiness Check</a>.</li>
-            <li>Use <a href="resume.html">Resume Builder</a>.</li>
-            <li>Ask the <a href="chat.html">AI Coach</a> questions.</li>
-          </ol>
-        </div>
-      </div>
-    </section>
 
-    <section class="grid">
-      <div class="card">
-        <h2>What students get</h2>
-        <ul>
-          <li>Plain-language explanations of each pathway</li>
-          <li>Grade-by-grade timeline (8–12)</li>
-          <li>Checklists, templates, and summer program planner</li>
-          <li>AI Coach that personalizes next steps and alternatives</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h2>What counselors get</h2>
-        <ul>
-          <li>Standardized advising workflow (same language for every student)</li>
-          <li>Fast triage: who is academy-competitive vs ROTC-competitive vs enlistment-ready</li>
-          <li>Built-in responsible-AI guardrails and citations</li>
-          <li>Exportable student action plan (print/email)</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h2>Responsible AI</h2>
-        <p class="muted">The AI Coach is restricted to education/career guidance. It does not provide operational instructions or anything unsafe. It points students to official sources for requirements and emphasizes counselor/parent confirmation.</p>
-        <a class="btn" href="responsible-ai.html">Read Responsible AI policy</a>
-      </div>
-    </section>
+        <p class="sub">
+          Cadet Compass is a counselor-built website and AI tool. It organizes military options into a single, student-friendly roadmap,
+          then uses AI to personalize next steps, check readiness, and prevent missed deadlines.
+        </p>
 
-    <section class="card" style="margin-top:18px">
+        <div class="btn-row">
+          <a class="btn primary" href="./resources.html">Start the Student Toolkit</a>
+          <a class="btn" href="./demo.html">Open the Digital Demo</a>
+        </div>
+
+        <p style="margin-top:10px; font-size:13px; color: var(--muted);">
+          Privacy: no student logins required. The AI Coach can run in “offline mode” (no data sent) or “live mode” (API-based) depending on school settings.
+        </p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Quick start</h2>
+      <ol>
+        <li>Open the 8–12 Roadmap.</li>
+        <li>Run the Readiness Check.</li>
+        <li>Use the Resume Builder.</li>
+        <li>Ask the AI Coach questions.</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <h2>What students get</h2>
+      <ul>
+        <li>Plain-language explanations of each pathway</li>
+        <li>Grade-by-grade timeline (8–12)</li>
+        <li>Checklists, templates, and summer program planner</li>
+        <li>AI Coach that personalizes next steps and alternatives</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>What counselors get</h2>
+      <ul>
+        <li>Standardized advising workflow (same language for every student)</li>
+        <li>Fast triage: academy-competitive vs ROTC-competitive vs enlistment-ready</li>
+        <li>Built-in responsible AI guardrails and citations</li>
+        <li>Exportable student action plan (print/email)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Responsible AI</h2>
+      <p style="margin:0 0 10px;">
+        The AI Coach is restricted to education/career guidance. It does not provide operational instructions or anything unsafe.
+        It points students to official sources for requirements and emphasizes counselor/parent confirmation.
+      </p>
+      <a class="btn" href="./responsible-ai.html">Read Responsible AI policy</a>
+    </div>
+
+    <div class="card">
       <h2>Official links hub</h2>
-      <p class="muted">Use these for authoritative, current requirements (academies and ROTC rules can change). Cadet Compass links students to official pages rather than hard-coding fragile numbers.</p>
-      <div class="grid2">
-        <div>
-          <h3>Service Academies</h3>
+      <p style="margin:0 0 10px; color: var(--muted);">
+        Requirements can change. Cadet Compass links students to official pages rather than hard-coding fragile numbers.
+      </p>
+
+      <div class="link-grid">
+        <div class="card">
+          <h2>Service Academies</h2>
           <ul>
-            <li>USMA (West Point) Admissions</li>
-            <li>USNA (Navy) Admissions</li>
-            <li>USAFA (Air Force) Admissions</li>
-            <li>USCGA (Coast Guard) Admissions</li>
-            <li>USMMA (Merchant Marine) Admissions</li>
+            <li><a href="https://www.westpoint.edu/admissions" target="_blank" rel="noreferrer">USMA (West Point) Admissions</a></li>
+            <li><a href="https://www.usna.edu/Admissions/" target="_blank" rel="noreferrer">USNA (Navy) Admissions</a></li>
+            <li><a href="https://www.academyadmissions.com/" target="_blank" rel="noreferrer">USAFA (Air Force) Admissions</a></li>
+            <li><a href="https://uscga.edu/admissions/" target="_blank" rel="noreferrer">USCGA (Coast Guard) Admissions</a></li>
+            <li><a href="https://www.usmma.edu/admissions" target="_blank" rel="noreferrer">USMMA (Merchant Marine) Admissions</a></li>
           </ul>
         </div>
-        <div>
-          <h3>ROTC</h3>
+
+        <div class="card">
+          <h2>ROTC</h2>
           <ul>
-            <li>Army ROTC</li>
-            <li>Navy ROTC</li>
-            <li>Air Force ROTC</li>
+            <li><a href="https://www.goarmy.com/careers-and-jobs/find-your-path/army-officers/rotc.html" target="_blank" rel="noreferrer">Army ROTC</a></li>
+            <li><a href="https://www.netc.navy.mil/Commands/Naval-Service-Training-Command/NROTC/" target="_blank" rel="noreferrer">Navy ROTC (NROTC)</a></li>
+            <li><a href="https://www.afrotc.com/" target="_blank" rel="noreferrer">Air Force ROTC</a></li>
           </ul>
+          <p style="margin:10px 0 0; font-size:12px; color: var(--muted);">
+            Exact URLs are also listed on the Resources page and cited in the submission PDF.
+          </p>
         </div>
       </div>
-      <p class="muted">Exact URLs are listed on the <a href="resources.html">Resources</a> page and cited in the submission PDF.</p>
-    </section>
-  </main>
+    </div>
 
-  <footer class="wrap foot">
-    <div>Cadet Compass • Track III Educator Project • Built for free hosting (GitHub Pages + Netlify)</div>
-    <div class="footLinks"><a href="credits.html">Credits</a> • <a href="responsible-ai.html">Responsible AI</a> • <a href="demo.html">Demo</a></div>
-  </footer>
-  <script src="js/app.js"></script>
+    <div class="footer">
+      Cadet Compass • Track III Educator Project • Built for free hosting (GitHub Pages + Netlify) •
+      <a href="./credits.html">Credits</a> • <a href="./demo.html">Demo</a>
+    </div>
+
+  </div>
 </body>
 </html>
