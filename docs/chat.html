@@ -1,71 +1,246 @@
 <!doctype html>
-<html lang='en'>
+<html lang="en">
 <head>
-  <meta charset='utf-8' />
-  <meta name='viewport' content='width=device-width, initial-scale=1' />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>AI Coach | Cadet Compass</title>
-  <link rel='stylesheet' href='assets/styles.css' />
+  <meta name="description" content="AI Coach for military pathway advising (Grades 8–12). Uses local guidance and official-source links; can optionally connect to a Netlify Function for AI responses." />
+  <link rel="stylesheet" href="./assets/styles.css" />
+
+  <style>
+    .grid-2{ display:grid; grid-template-columns: 1.4fr .6fr; gap:12px; }
+    @media(max-width:900px){ .grid-2{ grid-template-columns:1fr; } }
+
+    .chat-shell{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      min-height: 520px;
+    }
+    .chatBox{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      border-radius:14px;
+      padding:12px;
+      overflow:auto;
+      height: 420px;
+    }
+    .msg{
+      display:flex;
+      margin:10px 0;
+      gap:10px;
+    }
+    .msg .bubble{
+      max-width: 86%;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      line-height: 1.35;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .msg.user{ justify-content:flex-end; }
+    .msg.user .bubble{
+      background: rgba(124,200,255,.10);
+      border-color: rgba(124,200,255,.18);
+    }
+    .msg.assistant .bubble{
+      background: rgba(255,255,255,.04);
+    }
+    .meta{
+      font-size:12px;
+      color: var(--muted);
+      margin-top:4px;
+    }
+    .row{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .row input{
+      flex:1;
+      min-width: 240px;
+      padding:10px 10px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      color: var(--text);
+      outline:none;
+    }
+    .quick{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+    .chip{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:12px;
+      cursor:pointer;
+      user-select:none;
+    }
+    .chip:hover{
+      background: rgba(255,255,255,.06);
+    }
+    .status{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      align-items:center;
+      font-size:12px;
+      color: var(--muted);
+    }
+    .dot{
+      width:8px; height:8px; border-radius:999px;
+      background: rgba(255,255,255,.18);
+      display:inline-block;
+    }
+    .dot.on{ background: rgba(120,220,160,.70); }
+    .dot.off{ background: rgba(255,120,120,.65); }
+    .tiny{
+      font-size:12px;
+      color: var(--muted);
+    }
+    .warn{
+      border:1px solid rgba(255,190,120,.25);
+      background: rgba(255,190,120,.08);
+      border-radius:12px;
+      padding:10px 12px;
+    }
+    .mono{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 12px;
+      line-height: 1.35;
+      white-space: pre-wrap;
+    }
+  </style>
 </head>
+
 <body>
-  <header class='top'>
-    <div class='wrap nav'>
-      <div class='brand'>
-        <img src='assets/compass.svg' alt='Cadet Compass logo' />
-        <div>
-          <div class='title'>Cadet Compass</div>
-          <div class='subtitle'>AI-assisted military pathway advising (Grades 8–12)</div>
+  <div class="top-nav">
+    <div style="display:flex; gap:10px; align-items:center;">
+      <a href="./index.html" style="font-weight:700; color: var(--text);">Cadet Compass</a>
+    </div>
+
+    <div style="display:flex; gap:6px; flex-wrap:wrap; justify-content:flex-end;">
+      <a href="./roadmap.html">8–12 Roadmap</a>
+      <a href="./academies.html">Service Academies</a>
+      <a href="./rotc.html">ROTC</a>
+      <a href="./enlistment.html">Enlistment</a>
+      <a href="./resources.html">Student Toolkit</a>
+      <a class="btn" href="./chat.html" style="padding:6px 10px; border-radius:999px; background: rgba(255,255,255,.06); color: var(--text);">AI Coach</a>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="hero" style="margin-bottom: 18px;">
+      <div class="logo-wrap">
+        <img src="./assets/compass.svg" alt="Cadet Compass logo">
+      </div>
+      <div>
+        <h1>AI Coach (Cadet Coach)</h1>
+        <p class="sub">
+          Guidance tool for Grades 8–12. It prioritizes safe advising: general planning, pathway comparisons,
+          and official-source verification. It avoids “hard numeric promises” and tells you what must be confirmed.
+        </p>
+        <div class="warn">
+          <strong>Privacy:</strong> Do not enter sensitive personal data (full name, address, SSN, medical details).
+          Use general details only (grade level, pathway interest, general goals).
         </div>
       </div>
-      
-      <nav class='links'>
-        <a class='' href='index.html'>Home</a>
-        <a class='' href='roadmap.html'>8–12 Roadmap</a>
-        <a class='' href='academies.html'>Service Academies</a>
-        <a class='' href='rotc.html'>ROTC</a>
-        <a class='' href='enlistment.html'>Enlistment</a>
-        <a class='' href='toolkit.html'>Toolkit</a>
-        <a class='active' href='chat.html'>AI Coach</a>
-      </nav>
+    </div>
+
+    <div class="grid-2">
+
+      <!-- LEFT: CHAT -->
+      <div class="card">
+        <div class="row" style="justify-content:space-between;">
+          <h2 style="margin:0;">Chat</h2>
+          <div class="status" aria-live="polite">
+            <span id="modeDot" class="dot off"></span>
+            <span id="modeText">Mode: Local guidance</span>
+            <span class="tiny" id="modeHint"></span>
+          </div>
+        </div>
+
+        <div class="chat-shell" style="margin-top:10px;">
+          <div id="chatBox" class="chatBox" aria-live="polite" aria-label="Chat messages"></div>
+
+          <div class="quick" aria-label="Quick prompts">
+            <div class="chip" data-prompt="I am in 10th grade in Texas. I want an officer pathway. Compare Service Academies vs ROTC and give me a plan for this semester.">Officer path: Academy vs ROTC</div>
+            <div class="chip" data-prompt="I am in 9th grade. How do I build leadership evidence starting now (activities, service, measurable impact) without fluff?">Leadership evidence (start now)</div>
+            <div class="chip" data-prompt="I am considering enlistment. What should I ask a recruiter, and what should I verify before signing anything?">Recruiter conversation checklist</div>
+            <div class="chip" data-prompt="Give me Plan A / Plan B / Plan C options for a Texas student interested in military pathways, with risks and timelines.">Plan A/B/C</div>
+          </div>
+
+          <div class="row">
+            <input id="chatInput" placeholder="Example: I am in 10th grade in Texas. I want Air Force officer pathway. What should I do this semester?" autocomplete="off" />
+            <button class="btn primary" id="btnSend" type="button">Send</button>
+            <button class="btn" id="btnClear" type="button">Clear</button>
+          </div>
+
+          <div class="tiny">
+            If the Netlify Function is configured, the coach uses AI + the site’s local guidance.
+            If not configured, it runs purely offline with local guidance.
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: GUIDE / SAFETY -->
+      <div class="card">
+        <h2 style="margin-top:0;">How to use this tool</h2>
+        <ul class="tiny">
+          <li>State your grade (8–12) and pathway interest (Academy / ROTC / Guard-Reserve / Enlistment).</li>
+          <li>Ask for a semester plan (not a vague “what should I do”).</li>
+          <li>Ask for a Plan B and risk flags.</li>
+          <li>Verify requirements using official links in <a href="./resources.html">Student Toolkit</a>.</li>
+        </ul>
+
+        <div class="warn" style="margin-top:12px;">
+          <strong>Scope guardrails:</strong>
+          <div class="tiny" style="margin-top:6px;">
+            This coach provides educational guidance only. It does not provide operational or unsafe instructions.
+            It does not replace parents/guardians, counselors, or official program staff.
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px;">
+          <div class="kicker">Recommended prompt format</div>
+          <div class="mono" id="promptTemplate">
+Grade: __
+Texas student: Yes
+Pathway interest: __ (Academy / ROTC / Guard-Reserve / Enlistment)
+Goal: __ (officer, scholarship, job training, etc.)
+Constraints: __ (time, transportation, family responsibilities)
+Request: "Give me a plan for the next 60 days + risks + what to verify."
+          </div>
+          <button class="btn" id="btnCopyTemplate" type="button" style="margin-top:10px;">Copy template</button>
+        </div>
+
+        <div class="card" style="margin-top:12px;">
+          <h2 style="margin-top:0;">Official verification</h2>
+          <div class="tiny">
+            Requirements change. Use the official links hub in <a href="./resources.html">Student Toolkit</a> before acting on any detail.
+          </div>
+        </div>
+      </div>
 
     </div>
-  </header>
-  <main class='wrap'>
-    
-<section class='card'>
-  <span class='pill'>AI-assisted</span>
-  <h1 class='h1'>AI Coach (Cadet Coach)</h1>
-  <p class='lead'>Ask questions and get guidance grounded in the site’s knowledge base plus official-source links. This tool avoids hard numeric promises and tells you what to verify.</p>
-  <div class='callout warn'><strong>Privacy:</strong> Do not enter sensitive personal data. Use general details only.</div>
-</section>
 
-<section class='grid2'>
-  <div class='card'>
-    <h2 class='h2'>Chat</h2>
-    <div id='chatBox' class='chatBox' aria-live='polite'></div>
-    <div class='row'>
-      <input id='chatInput' placeholder='Example: I am in 10th grade. I want Air Force officer pathway. What should I do this semester?' />
-      <button class='btn' id='btnSend'>Send</button>
+    <div class="footer">
+      Cadet Compass • Track III Educator Project • Free hosting: GitHub Pages + Netlify •
+      <a href="./credits.html">Credits</a> • <a href="./responsible-ai.html">Responsible AI</a> • <a href="./demo.html">Demo</a>
     </div>
-    <div class='small muted' style='margin-top:8px'>If the Netlify AI function is not configured, the coach will fall back to local guidance.</div>
-  </div>
-  <div class='card'>
-    <h2 class='h2'>Sample questions</h2>
-    <ul class='muted'>
-      <li>What is the difference between ROTC scholarship and Academy?</li>
-      <li>How do I build leadership evidence starting in Grade 8 or 9?</li>
-      <li>What is a realistic Plan B if I don’t get an appointment?</li>
-      <li>How should I talk to a recruiter responsibly with my family?</li>
-    </ul>
-  </div>
-</section>
 
-<script src='js/chatbot.js'></script>
+  </div>
 
-  </main>
-  <footer class='wrap foot'>
-    <div>Cadet Compass • Track III Educator Project • Free hosting: GitHub Pages + Netlify</div>
-    <div class='footLinks'><a href='credits.html'>Credits</a> • <a href='responsible-ai.html'>Responsible AI</a> • <a href='demo.html'>Demo</a></div>
-  </footer>
-  <script src='js/app.js'></script>
+  <script src="./js/chatbot.js"></script>
 </body>
 </html>
