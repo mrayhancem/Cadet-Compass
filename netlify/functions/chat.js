@@ -1,74 +1,81 @@
-/**
- * Netlify Function: /api/chat
- *
- * Env vars required in Netlify:
- *   OPENAI_API_KEY = sk-...
- * Optional:
- *   OPENAI_MODEL   = gpt-5-mini
- */
+// Netlify Functions (Node) runtime supports global fetch in modern runtimes.
+export default async (request, context) => {
+  // CORS (optional; same-origin requests typically fine, but safe to include)
+  const corsHeaders = {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Headers": "Content-Type",
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+  };
 
-exports.handler = async (event) => {
+  if (request.method === "OPTIONS") {
+    return new Response("", { status: 204, headers: corsHeaders });
+  }
+
+  if (request.method !== "POST") {
+    return new Response(JSON.stringify({ error: "Method not allowed" }), {
+      status: 405,
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
+  }
+
+  const apiKey = process.env.OPENAI_API_KEY;
+  if (!apiKey) {
+    return new Response(JSON.stringify({ error: "OPENAI_API_KEY not set" }), {
+      status: 501,
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
+  }
+
+  let payload;
   try {
-    // Only allow POST
-    if (event.httpMethod !== "POST") {
-      return {
-        statusCode: 405,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ error: "Method not allowed" }),
-      };
-    }
+    payload = await request.json();
+  } catch {
+    return new Response(JSON.stringify({ error: "Invalid JSON" }), {
+      status: 400,
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
+  }
 
-    const apiKey = process.env.OPENAI_API_KEY;
-    if (!apiKey) {
-      return {
-        statusCode: 501,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ error: "OPENAI_API_KEY not set" }),
-      };
-    }
+  const message = String(payload?.message || "").trim().slice(0, 2000);
+  if (!message) {
+    return new Response(JSON.stringify({ error: "Message required" }), {
+      status: 400,
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
+  }
 
-    let payload;
-    try {
-      payload = JSON.parse(event.body || "{}");
-    } catch (e) {
-      return {
-        statusCode: 400,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ error: "Invalid JSON" }),
-      };
-    }
-
-    const message = String(payload.message || "").slice(0, 2000).trim();
-    if (!message) {
-      return {
-        statusCode: 400,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ error: "Message required" }),
-      };
-    }
-
-    const model = process.env.OPENAI_MODEL || "gpt-5-mini";
-
-    const system = `You are Cadet Coach for a Texas student advising website about military pathways (Grades 8–12).
+  const system = `You are Cadet Coach for a Grades 8–12 military-pathway advising website (Texas context allowed).
 
 Rules:
-- Do not request sensitive personal data.
+- Do not request or store sensitive personal data.
 - Do not promise eligibility, dollar amounts, or exact deadlines.
-- Provide grade-appropriate guidance for grades 8–12.
-- Always tell the user to verify requirements on official sources.
+- Provide grade-appropriate guidance (8–12) with practical next steps.
+- Always include: what to verify on official sources (academy/ROTC/branch sites).
 - Be concise, structured, and practical.
-- If user asks for disallowed content, refuse and redirect to safe guidance.`;
+- If asked for disallowed/unsafe content, refuse and redirect to safe guidance.`;
 
-    // Responses API (recommended)
-    const body = {
-      model,
-      input: [
-        { role: "system", content: system },
-        { role: "user", content: message },
-      ],
-      temperature: 0.2,
-    };
+  const model = process.env.OPENAI_MODEL || "gpt-5-mini";
 
+  // Responses API request body (recommended in OpenAI quickstart)
+  // We ask for a single, structured response and keep it short.
+  const body = {
+    model,
+    input: [
+      {
+        role: "system",
+        content: [{ type: "text", text: system }],
+      },
+      {
+        role: "user",
+        content: [{ type: "text", text: message }],
+      },
+    ],
+    // Keep it stable for advising:
+    temperature: 0.2,
+    max_output_tokens: 600,
+  };
+
+  try {
     const resp = await fetch("https://api.openai.com/v1/responses", {
       method: "POST",
       headers: {
@@ -78,50 +85,43 @@ Rules:
       body: JSON.stringify(body),
     });
 
+    const raw = await resp.text();
+
     if (!resp.ok) {
-      const errText = await resp.text();
-      return {
-        statusCode: 502,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
+      // Return the upstream payload (trimmed) to make debugging easy in Netlify function logs.
+      return new Response(
+        JSON.stringify({
           error: "Upstream error",
-          details: errText.slice(0, 1000),
+          status: resp.status,
+          details: raw.slice(0, 1200),
         }),
-      };
-    }
-
-    const data = await resp.json();
-
-    // Extract output text robustly
-    let reply = "";
-    if (typeof data.output_text === "string") reply = data.output_text;
-
-    if (!reply && Array.isArray(data.output)) {
-      const parts = [];
-      for (const o of data.output) {
-        if (o && o.type === "message" && Array.isArray(o.content)) {
-          for (const c of o.content) {
-            if (c && c.type === "output_text" && typeof c.text === "string") {
-              parts.push(c.text);
-            }
-          }
+        {
+          status: 502,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
         }
-      }
-      reply = parts.join("\n").trim();
+      );
     }
 
-    if (!reply) reply = "No reply.";
+    // Parse the response
+    const data = JSON.parse(raw);
 
-    return {
-      statusCode: 200,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ reply }),
-    };
+    // OpenAI quickstart shows `response.output_text` usage in SDKs; for raw JSON,
+    // the "output_text" field is commonly present.
+    const reply =
+      (typeof data?.output_text === "string" && data.output_text.trim()) ||
+      "No reply.";
+
+    return new Response(JSON.stringify({ reply }), {
+      status: 200,
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
   } catch (e) {
-    return {
-      statusCode: 502,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ error: "Function crash", details: String(e) }),
-    };
+    return new Response(
+      JSON.stringify({ error: "Network error", details: String(e) }),
+      {
+        status: 502,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      }
+    );
   }
 };
