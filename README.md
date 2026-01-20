@@ -4,7 +4,7 @@ Cadet Compass is a free-hosted website (GitHub Pages + Netlify) that helps grade
 Service Academies, ROTC, enlistment, National Guard, and Reserves.
 
 ## What’s inside
-- `site/` – static website (works on GitHub Pages)
+- `docs/` – static website (works on GitHub Pages)
 - `netlify/functions/chat.js` – optional AI coach (Netlify Function). If no API key is set, the website uses local guidance.
 - `netlify.toml` – Netlify configuration for serverless functions
 
