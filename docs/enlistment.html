@@ -1,78 +1,251 @@
 <!doctype html>
-<html lang='en'>
+<html lang="en">
 <head>
-  <meta charset='utf-8' />
-  <meta name='viewport' content='width=device-width, initial-scale=1' />
-  <title>Enlistment | Cadet Compass</title>
-  <link rel='stylesheet' href='assets/styles.css' />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Enlistment Pathway | Cadet Compass</title>
+  <meta name="description" content="Military enlistment pathway overview: branches, ASVAB basics, education benefits, and official recruiter links for grades 8–12 planning." />
+  <link rel="stylesheet" href="./assets/styles.css" />
+
+  <style>
+    .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+    .badge{
+      display:inline-block;
+      font-size:11px;
+      padding:4px 8px;
+      border-radius:999px;
+      background: rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
+      color: var(--muted);
+      margin-right:6px;
+    }
+    .mini{
+      font-size:13px;
+      color: var(--muted);
+    }
+    table{
+      width:100%;
+      border-collapse:collapse;
+      font-size:14px;
+    }
+    th,td{
+      border:1px solid rgba(255,255,255,.10);
+      padding:8px 10px;
+      text-align:left;
+      vertical-align:top;
+    }
+    th{
+      background: rgba(255,255,255,.06);
+      font-weight:600;
+    }
+    @media(max-width:900px){
+      .grid-2,.grid-3{ grid-template-columns:1fr; }
+    }
+  </style>
 </head>
+
 <body>
-  <header class='top'>
-    <div class='wrap nav'>
-      <div class='brand'>
-        <img src='assets/compass.svg' alt='Cadet Compass logo' />
-        <div>
-          <div class='title'>Cadet Compass</div>
-          <div class='subtitle'>AI-assisted military pathway advising (Grades 8–12)</div>
+  <div class="top-nav">
+    <div>
+      <a href="./index.html" style="font-weight:700;color:var(--text);">Cadet Compass</a>
+    </div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;">
+      <a href="./roadmap.html">8–12 Roadmap</a>
+      <a href="./academies.html">Service Academies</a>
+      <a href="./rotc.html">ROTC</a>
+      <a href="./enlistment.html" style="background: rgba(255,255,255,.06); color: var(--text);">Enlistment</a>
+      <a href="./resources.html">Student Toolkit</a>
+      <a class="btn" href="./chat.html" style="padding:6px 10px;border-radius:999px;">AI Coach</a>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="logo-wrap">
+        <img src="./assets/compass.svg" alt="Cadet Compass logo">
+      </div>
+      <div>
+        <h1>Enlistment — Serving First, College Later (or Concurrently)</h1>
+        <p class="sub">
+          Enlistment is a viable military pathway that allows students to gain job skills, income,
+          and education benefits. College can begin during service or after separation, depending
+          on branch, job, and contract.
+        </p>
+
+        <span class="badge">Immediate service</span>
+        <span class="badge">Paid training</span>
+        <span class="badge">Education benefits</span>
+        <span class="badge">Officer later possible</span>
+      </div>
+    </div>
+
+    <!-- WHAT IT IS -->
+    <div class="card">
+      <h2>What enlistment looks like</h2>
+      <div class="grid-2">
+        <div class="card" style="margin:0;">
+          <h2 style="margin:0 0 6px;">Core idea</h2>
+          <ul>
+            <li>Student enlists directly after high school (or later)</li>
+            <li>Completes Basic Training + job-specific training</li>
+            <li>Serves on Active Duty or in Guard/Reserve</li>
+            <li>May pursue college during or after service</li>
+          </ul>
+        </div>
+        <div class="card" style="margin:0;">
+          <h2 style="margin:0 0 6px;">Common reasons students choose this</h2>
+          <ul>
+            <li>Financial independence</li>
+            <li>Hands-on technical training</li>
+            <li>Clear structure and benefits</li>
+            <li>Later transition to ROTC or officer programs</li>
+          </ul>
         </div>
       </div>
-      
-      <nav class='links'>
-        <a class='' href='index.html'>Home</a>
-        <a class='' href='roadmap.html'>8–12 Roadmap</a>
-        <a class='' href='academies.html'>Service Academies</a>
-        <a class='' href='rotc.html'>ROTC</a>
-        <a class='active' href='enlistment.html'>Enlistment</a>
-        <a class='' href='toolkit.html'>Toolkit</a>
-        <a class='' href='chat.html'>AI Coach</a>
-      </nav>
-
     </div>
-  </header>
-  <main class='wrap'>
-    
-<section class='card'>
-  <span class='pill'>Enlisted Pathway</span>
-  <h1 class='h1'>Enlistment, National Guard, and Reserves</h1>
-  <p class='lead'>Enlistment can provide training, pay, and education benefits. Many enlisted service members later commission via OCS/OTS or other programs (policies vary).</p>
-</section>
 
-<section class='grid2'>
-  <div class='card'>
-    <h2 class='h2'>Branch entry points (official)</h2>
-    <ul class='muted'>
-      <li><a href='https://www.goarmy.com/' target='_blank' rel='noopener'>U.S. Army</a></li>
-      <li><a href='https://www.navy.com/' target='_blank' rel='noopener'>U.S. Navy</a></li>
-      <li><a href='https://www.airforce.com/' target='_blank' rel='noopener'>U.S. Air Force</a></li>
-      <li><a href='https://www.marines.com/' target='_blank' rel='noopener'>U.S. Marine Corps</a></li>
-      <li><a href='https://www.gocoastguard.com/' target='_blank' rel='noopener'>U.S. Coast Guard</a></li>
-      <li><a href='https://www.spaceforce.com/' target='_blank' rel='noopener'>U.S. Space Force</a></li>
-    </ul>
-    <div class='callout warn'><strong>Advisor note:</strong> Students should use official branch websites and meet recruiters with a parent/guardian when appropriate.</div>
+    <!-- ASVAB -->
+    <div class="card">
+      <h2>ASVAB basics (eligibility overview)</h2>
+      <p class="mini">
+        The ASVAB determines enlistment eligibility and job qualification. Job scores vary widely;
+        numbers below reflect typical minimum eligibility thresholds, not job guarantees.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Branch</th>
+            <th>Typical Minimum AFQT*</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Army</td>
+            <td>31</td>
+            <td>Higher scores unlock more technical jobs</td>
+          </tr>
+          <tr>
+            <td>Marine Corps</td>
+            <td>31</td>
+            <td>Physical readiness emphasized</td>
+          </tr>
+          <tr>
+            <td>Navy</td>
+            <td>35</td>
+            <td>Many jobs require higher line scores</td>
+          </tr>
+          <tr>
+            <td>Air Force</td>
+            <td>36</td>
+            <td>Highly competitive; strong academics recommended</td>
+          </tr>
+          <tr>
+            <td>Coast Guard</td>
+            <td>40+</td>
+            <td>Small service; very competitive</td>
+          </tr>
+          <tr>
+            <td>Space Force</td>
+            <td>High / selective</td>
+            <td>Limited access; typically through Air Force processes</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="mini">
+        *AFQT = Armed Forces Qualification Test score (derived from ASVAB). Always verify current standards with official recruiters.
+      </p>
+    </div>
+
+    <!-- EDUCATION BENEFITS -->
+    <div class="card">
+      <h2>College and education pathways after enlistment</h2>
+      <div class="grid-3">
+        <div class="card" style="margin:0;">
+          <h2 style="margin:0 0 6px;">During service</h2>
+          <ul>
+            <li>Tuition Assistance (TA)</li>
+            <li>Online or night classes</li>
+            <li>Community college partnerships</li>
+            <li>Service-specific degree programs</li>
+          </ul>
+        </div>
+        <div class="card" style="margin:0;">
+          <h2 style="margin:0 0 6px;">After service</h2>
+          <ul>
+            <li>Post-9/11 GI Bill</li>
+            <li>Housing allowance (BAH)</li>
+            <li>Full-time college attendance</li>
+            <li>Transfer to ROTC or officer routes</li>
+          </ul>
+        </div>
+        <div class="card" style="margin:0;">
+          <h2 style="margin:0 0 6px;">Important reality</h2>
+          <ul>
+            <li>Education timing depends on job and unit</li>
+            <li>Not all jobs allow early college</li>
+            <li>Planning ahead matters</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- BRANCH LINKS -->
+    <div class="card">
+      <h2>Official recruiter entry points</h2>
+      <p class="mini">
+        Use these official pages to locate local recruiters and verify current requirements.
+      </p>
+
+      <div class="grid-3">
+        <div class="card" style="margin:0;">
+          <h2 style="margin:0 0 6px;">Army</h2>
+          <a href="https://www.goarmy.com" target="_blank" rel="noreferrer">goarmy.com</a>
+        </div>
+        <div class="card" style="margin:0;">
+          <h2 style="margin:0 0 6px;">Navy</h2>
+          <a href="https://www.navy.com" target="_blank" rel="noreferrer">navy.com</a>
+        </div>
+        <div class="card" style="margin:0;">
+          <h2 style="margin:0 0 6px;">Air Force</h2>
+          <a href="https://www.airforce.com" target="_blank" rel="noreferrer">airforce.com</a>
+        </div>
+        <div class="card" style="margin:0;">
+          <h2 style="margin:0 0 6px;">Marine Corps</h2>
+          <a href="https://www.marines.com" target="_blank" rel="noreferrer">marines.com</a>
+        </div>
+        <div class="card" style="margin:0;">
+          <h2 style="margin:0 0 6px;">Coast Guard</h2>
+          <a href="https://www.gocoastguard.com" target="_blank" rel="noreferrer">gocoastguard.com</a>
+        </div>
+        <div class="card" style="margin:0;">
+          <h2 style="margin:0 0 6px;">Space Force</h2>
+          <a href="https://www.spaceforce.com" target="_blank" rel="noreferrer">spaceforce.com</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADVISING -->
+    <div class="card">
+      <h2>Advising notes for students and families</h2>
+      <ul>
+        <li>Enlistment contracts are legally binding — read carefully</li>
+        <li>Job selection matters more than branch prestige</li>
+        <li>Keep documentation of training and service</li>
+        <li>Confirm education benefits before signing</li>
+      </ul>
+    </div>
+
+    <div class="footer">
+      Cadet Compass • Track III Educator Project • Informational guidance only •
+      <a href="./credits.html">Credits</a> • <a href="./responsible-ai.html">Responsible AI</a> • <a href="./demo.html">Demo</a>
+    </div>
+
   </div>
-
-  <div class='card'>
-    <h2 class='h2'>AI-assisted “fit” questions</h2>
-    <p class='muted'>Use the AI Coach page to answer these accurately and build a plan:</p>
-    <ol class='muted'>
-      <li>What careers interest you (cyber, aviation, medical, mechanical, logistics)?</li>
-      <li>Do you want full-time active duty or part-time Guard/Reserve?</li>
-      <li>Do you want to commission as an officer eventually?</li>
-      <li>What education goal do you have (certificate, associate, bachelor’s, graduate)?</li>
-    </ol>
-  </div>
-</section>
-
-<section class='card'>
-  <h2 class='h2'>Education and benefits (verification required)</h2>
-  <p class='muted'>Education benefits and state programs can change. Cadet Compass intentionally avoids publishing dollar amounts or promises. Use the Toolkit’s official links and verification checklist before making commitments.</p>
-</section>
-
-  </main>
-  <footer class='wrap foot'>
-    <div>Cadet Compass • Track III Educator Project • Free hosting: GitHub Pages + Netlify</div>
-    <div class='footLinks'><a href='credits.html'>Credits</a> • <a href='responsible-ai.html'>Responsible AI</a> • <a href='demo.html'>Demo</a></div>
-  </footer>
-  <script src='js/app.js'></script>
 </body>
 </html>
