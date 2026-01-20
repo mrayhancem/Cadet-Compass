@@ -1,111 +1,221 @@
 <!doctype html>
-<html lang='en'>
+<html lang="en">
 <head>
-  <meta charset='utf-8' />
-  <meta name='viewport' content='width=device-width, initial-scale=1' />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>8–12 Roadmap | Cadet Compass</title>
-  <link rel='stylesheet' href='assets/styles.css' />
+  <meta name="description" content="Grade-by-grade military pathway roadmap (Grades 8–12) for Service Academies, ROTC, Guard/Reserve, and Enlistment." />
+  <link rel="stylesheet" href="./assets/styles.css" />
 </head>
+
 <body>
-  <header class='top'>
-    <div class='wrap nav'>
-      <div class='brand'>
-        <img src='assets/compass.svg' alt='Cadet Compass logo' />
-        <div>
-          <div class='title'>Cadet Compass</div>
-          <div class='subtitle'>AI-assisted military pathway advising (Grades 8–12)</div>
+  <div class="top-nav">
+    <div style="display:flex; gap:10px; align-items:center;">
+      <a href="./index.html" style="font-weight:700; color: var(--text);">Cadet Compass</a>
+    </div>
+
+    <div style="display:flex; gap:6px; flex-wrap:wrap; justify-content:flex-end;">
+      <a href="./roadmap.html" style="background: rgba(255,255,255,.06); color: var(--text);">8–12 Roadmap</a>
+      <a href="./academies.html">Service Academies</a>
+      <a href="./rotc.html">ROTC</a>
+      <a href="./enlistment.html">Enlistment</a>
+      <a href="./resources.html">Student Toolkit</a>
+      <a class="btn" href="./chat.html" style="padding:6px 10px; border-radius:999px;">AI Coach</a>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="hero" style="margin-bottom: 22px;">
+      <div class="logo-wrap">
+        <img src="./assets/compass.svg" alt="Cadet Compass logo">
+      </div>
+
+      <div>
+        <h1>Military Pathway Roadmap (Grades 8–12)</h1>
+        <p class="sub">
+          Use this roadmap to prevent “late discovery” in Grade 11. For officer pathways, leadership, academics, and fitness compound over time.
+          Build a primary plan (Academy or ROTC) and a backup plan (ROTC, Guard/Reserve, or enlistment → later commissioning).
+        </p>
+        <div class="btn-row">
+          <a class="btn primary" href="./resources.html">Open Student Toolkit</a>
+          <a class="btn" href="./demo.html">Open Demo</a>
         </div>
       </div>
-      
-      <nav class='links'>
-        <a class='' href='index.html'>Home</a>
-        <a class='active' href='roadmap.html'>8–12 Roadmap</a>
-        <a class='' href='academies.html'>Service Academies</a>
-        <a class='' href='rotc.html'>ROTC</a>
-        <a class='' href='enlistment.html'>Enlistment</a>
-        <a class='' href='toolkit.html'>Toolkit</a>
-        <a class='' href='chat.html'>AI Coach</a>
-      </nav>
-
     </div>
-  </header>
-  <main class='wrap'>
-    
-<section class='hero'>
-  <div>
-    <span class='pill'>Grades 8–12</span>
-    <h1 class='h1'>Military Pathway Roadmap</h1>
-    <p class='lead'>A grade-by-grade checklist for Service Academies, ROTC scholarships, National Guard/Reserve options, and enlistment readiness.</p>
-    <div class='grid2'>
-      <div class='card'>
-        <div class='kicker'>Principle</div>
-        <h2 class='h2'>Start early</h2>
-        <p>For officer pathways, leadership, academics, and fitness compound over time. This roadmap is designed to prevent “late discovery” in Grade 11.</p>
+
+    <div class="card">
+      <h2>Roadmap at a glance</h2>
+      <p style="margin:0 0 10px;">
+        This is a planning guide. Final eligibility requirements and timelines should be verified on official admissions / program pages.
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:70px;">Grade</th>
+              <th style="width:220px;">Focus</th>
+              <th>Key actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>8</strong></td>
+              <td>Explore & plan</td>
+              <td>Learn officer vs enlisted; identify interests; begin a simple fitness baseline; track activities and service hours.</td>
+            </tr>
+            <tr>
+              <td><strong>9</strong></td>
+              <td>Build foundations</td>
+              <td>Strong attendance and grades; join teams/clubs; begin leadership roles; start a achievements log (awards, roles, hours).</td>
+            </tr>
+            <tr>
+              <td><strong>10</strong></td>
+              <td>Position for options</td>
+              <td>Take rigorous courses; expand leadership; begin SAT/ACT planning; research academy summer programs and ROTC scholarship basics.</td>
+            </tr>
+            <tr>
+              <td><strong>11</strong></td>
+              <td>Execute applications</td>
+              <td>Service academy pre-candidate steps; start nomination process; ROTC scholarship timelines; medical readiness planning; interview practice.</td>
+            </tr>
+            <tr>
+              <td><strong>12</strong></td>
+              <td>Finalize pathway</td>
+              <td>Complete appointments/scholarships; finalize enlistment contracts if chosen; transition plan; family financial and logistics planning.</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <div class='card'>
-        <div class='kicker'>Principle</div>
-        <h2 class='h2'>Always have a Plan B</h2>
-        <p>Cadet Compass teaches students to build a primary plan (e.g., Academy) and a backup plan (e.g., ROTC) and a safety plan (e.g., enlist + later commissioning).</p>
+
+      <p style="margin:10px 0 0; font-size:12px; color: var(--muted);">
+        Important: Requirements and timelines can change. This site links to official sources on the Resources page for final verification.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>AI-assisted timeline generator (offline, local)</h2>
+      <p style="margin:0 0 10px;">
+        Select your current grade and target pathway. This generator produces a customized plan with risk flags.
+        It runs fully in the browser (no logins, no data storage).
+      </p>
+
+      <div class="grid-2">
+        <div>
+          <label for="currentGrade">Current grade</label>
+          <select id="currentGrade">
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="targetPathway">Target pathway</label>
+          <select id="targetPathway">
+            <option value="academy">Service Academy</option>
+            <option value="rotc">ROTC</option>
+            <option value="guard">National Guard / Reserve</option>
+            <option value="enlist">Enlistment</option>
+          </select>
+        </div>
       </div>
+
+      <div style="margin-top:10px;">
+        <button class="btn primary" type="button" onclick="generateTimeline()">Generate timeline</button>
+      </div>
+
+      <div id="timelineOutput" class="card" style="margin-top:12px; display:none;"></div>
     </div>
-  </div>
-</section>
 
-<section class='card'>
-  <h2 class='h2'>Roadmap at a glance</h2>
-  <table class='table'>
-    <thead><tr><th>Grade</th><th>Focus</th><th>Key actions</th></tr></thead>
-    <tbody>
-      <tr><td><strong>8</strong></td><td>Explore & plan</td><td>Learn officer vs enlisted; identify interests; start fitness baseline; track activities.</td></tr>
-      <tr><td><strong>9</strong></td><td>Build foundations</td><td>Strong attendance & grades; leadership roles; join teams/clubs; service hours; meet counselor.</td></tr>
-      <tr><td><strong>10</strong></td><td>Position for options</td><td>Higher rigor courses; leadership growth; SAT/ACT planning; academy summer program research.</td></tr>
-      <tr><td><strong>11</strong></td><td>Execute applications</td><td>Academy packets + nominations; ROTC scholarships; medical readiness planning; interview practice.</td></tr>
-      <tr><td><strong>12</strong></td><td>Finalize pathway</td><td>Complete appointments/scholarships; enlistment contracts if chosen; transition planning; family financial planning.</td></tr>
-    </tbody>
-  </table>
-  <p class='small'>Important: Requirements and timelines change. This site links to official sources for final verification.</p>
-</section>
-
-<section class='grid2'>
-  <div class='card'>
-    <h2 class='h2'>AI-assisted timeline generator</h2>
-    <p class='muted'>Enter your grade and target pathway to generate a customized timeline with next steps and risk flags.</p>
-    <div class='grid2'>
-      <label class='small'>Current grade
-        <select id='tlGrade'>
-          <option value='8'>8</option><option value='9'>9</option><option value='10'>10</option><option value='11'>11</option><option value='12'>12</option>
-        </select>
-      </label>
-      <label class='small'>Target pathway
-        <select id='tlPath'>
-          <option value='academy'>Service Academy</option>
-          <option value='rotc'>ROTC Scholarship</option>
-          <option value='enlist'>Enlistment</option>
-          <option value='guard'>National Guard/Reserve</option>
-        </select>
-      </label>
+    <div class="card">
+      <h2>What students miss most often (common failure points)</h2>
+      <ul>
+        <li>Waiting until Grade 11 to start leadership and fitness.</li>
+        <li>Assuming “good grades” alone are enough for competitive officer programs.</li>
+        <li>Not building multiple pathways (Academy + ROTC + enlistment fallback).</li>
+        <li>Not using official sources to verify current requirements.</li>
+      </ul>
+      <p style="margin-top:10px; font-size:12px; color: var(--muted);">
+        Advisor note: Use this site to create an action plan, then confirm details with official admissions pages and local recruiters.
+      </p>
     </div>
-    <button class='btn' id='btnTimeline'>Generate timeline</button>
-    <div class='card' style='margin-top:12px' id='tlOut' aria-live='polite'></div>
+
+    <div class="footer">
+      Cadet Compass • Track III Educator Project • Free hosting: GitHub Pages + Netlify •
+      <a href="./credits.html">Credits</a> • <a href="./responsible-ai.html">Responsible AI</a> • <a href="./demo.html">Demo</a>
+    </div>
+
   </div>
 
-  <div class='card'>
-    <h2 class='h2'>What students miss most often</h2>
-    <ul class='muted'>
-      <li>Waiting until Grade 11 to start leadership and fitness.</li>
-      <li>Assuming “good grades” alone are enough for competitive officer programs.</li>
-      <li>Not building multiple pathways (Academy + ROTC + enlistment fallback).</li>
-      <li>Not using official sources to verify current requirements.</li>
-    </ul>
-    <div class='callout warn'><strong>Advisor note:</strong> Use this site to create an action plan, then confirm details with official admissions and local recruiters.</div>
-  </div>
-</section>
+  <script>
+    function generateTimeline(){
+      const grade = parseInt(document.getElementById('currentGrade').value, 10);
+      const pathway = document.getElementById('targetPathway').value;
+      const out = document.getElementById('timelineOutput');
+      out.style.display = 'block';
 
-  </main>
-  <footer class='wrap foot'>
-    <div>Cadet Compass • Track III Educator Project • Free hosting: GitHub Pages + Netlify</div>
-    <div class='footLinks'><a href='credits.html'>Credits</a> • <a href='responsible-ai.html'>Responsible AI</a> • <a href='demo.html'>Demo</a></div>
-  </footer>
-  <script src='js/app.js'></script>
+      const pathwayLabel = ({
+        academy: 'Service Academy',
+        rotc: 'ROTC',
+        guard: 'National Guard / Reserve',
+        enlist: 'Enlistment'
+      })[pathway] || 'Pathway';
+
+      const flags = [];
+      if (grade >= 11 && pathway === 'academy') flags.push('Risk flag: Starting academy planning in Grade 11 is late. Use a strong ROTC backup plan.');
+      if (grade >= 12 && (pathway === 'academy' || pathway === 'rotc')) flags.push('Risk flag: Starting scholarship/appointment planning in Grade 12 is high-risk. Confirm deadlines immediately.');
+      if (pathway === 'enlist') flags.push('Note: Enlistment can still lead to commissioning later via programs and education benefits—plan intentionally.');
+
+      const stepsByGrade = {
+        8: [
+          'Explore officer vs enlisted and all branches.',
+          'Start a basic fitness baseline and consistency plan.',
+          'Join 1–2 activities; begin a leadership/service log.'
+        ],
+        9: [
+          'Maintain strong grades and attendance.',
+          'Add leadership roles (team captain, club officer, peer mentor).',
+          'Build a “record of performance” file: awards, roles, hours.'
+        ],
+        10: [
+          'Increase rigor in coursework; avoid schedule gaps.',
+          'Start SAT/ACT planning (for academies/ROTC competitiveness).',
+          'Research academy summer programs and ROTC scholarship basics.'
+        ],
+        11: [
+          'Academy: open candidate portals early; plan nomination steps.',
+          'ROTC: confirm scholarship timelines and application requirements.',
+          'Plan medical readiness and fitness testing practice; prep interviews.'
+        ],
+        12: [
+          'Finalize appointments/scholarships/admissions.',
+          'Complete medical/fitness steps and documentation as needed.',
+          'Execute logistics: contracts, onboarding, travel, family planning.'
+        ]
+      };
+
+      const plan = [];
+      for (let g = grade; g <= 12; g++){
+        plan.push(`<div style="margin:10px 0;"><strong>Grade ${g}</strong><ul style="margin:6px 0 0 18px;">${
+          stepsByGrade[g].map(s => `<li>${s}</li>`).join('')
+        }</ul></div>`);
+      }
+
+      out.innerHTML = `
+        <h2 style="margin:0 0 6px;">Customized timeline: ${pathwayLabel}</h2>
+        <p style="margin:0 0 10px; color: var(--muted);">Generated locally in your browser. Use as a planning checklist, then verify requirements on official pages.</p>
+        ${flags.length ? `<div class="card" style="margin:0 0 10px; border-color: rgba(255,160,122,.35);">
+          <h2 style="margin:0 0 6px;">Risk flags</h2>
+          <ul style="margin:6px 0 0 18px;">${flags.map(f => `<li>${f}</li>`).join('')}</ul>
+        </div>` : ''}
+        <div>${plan.join('')}</div>
+        <p style="margin-top:10px; font-size:12px; color: var(--muted);">Next: use the Student Toolkit for templates and official links.</p>
+      `;
+    }
+  </script>
 </body>
 </html>
