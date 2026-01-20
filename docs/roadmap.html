@@ -34,8 +34,9 @@
       <div>
         <h1>Military Pathway Roadmap (Grades 8–12)</h1>
         <p class="sub">
-          This roadmap prevents “late discovery” in Grade 11. It keeps two pillars constant: <strong>academics</strong> and
-          <strong>character/leadership</strong>, while making actions more specific each year depending on the pathway you choose.
+          This roadmap prevents “late discovery” in Grade 11. It keeps two pillars constant:
+          <strong>academics</strong> and <strong>character/leadership</strong>, while making actions more specific each year
+          depending on the pathway you choose.
         </p>
         <div class="btn-row">
           <a class="btn primary" href="./resources.html">Open Student Toolkit</a>
@@ -98,7 +99,7 @@
       <h2>AI-assisted timeline generator (pathway-specific)</h2>
       <p style="margin:0 0 10px;">
         Select your current grade and pathway. This generator outputs a pathway-specific plan for each grade level through Grade 12,
-        plus an SST graduation readiness overlay. Runs in your browser: no logins, no data storage.
+        plus a <strong>Texas-wide graduation readiness overlay</strong>. Runs in your browser: no logins, no data storage.
       </p>
 
       <div class="grid-2">
@@ -117,7 +118,7 @@
           <label for="targetPathway">Target pathway</label>
           <select id="targetPathway">
             <option value="academy">Service Academy (Officer)</option>
-            <option value="rotc">ROTC Scholarship (Officer)</option>
+            <option value="rotc">ROTC (Officer)</option>
             <option value="guard">National Guard / Reserve</option>
             <option value="enlist">Active Duty Enlistment</option>
           </select>
@@ -133,17 +134,17 @@
     </div>
 
     <div class="card">
-      <h2>SST graduation readiness (how this tool uses it)</h2>
+      <h2>Texas graduation readiness overlay (how this tool uses it)</h2>
       <p style="margin:0 0 10px;">
-        The generator includes a graduation overlay each year so students do not pursue a military pathway while falling behind on
-        graduation basics. These items are placeholders you can edit to match SST policy exactly:
+        The generator includes a Texas-wide graduation overlay each year so students do not pursue a military pathway while falling behind on
+        graduation basics. Graduation plans can vary by district/campus—verify locally.
       </p>
       <ul>
         <li><strong>Credits tracking:</strong> on-track each year toward diploma plan</li>
-        <li><strong>EOCs:</strong> pass required state assessments (as applicable)</li>
-        <li><strong>LOTE / Endorsement alignment:</strong> stay on pathway plan</li>
-        <li><strong>Community service hours:</strong> document hours for leadership/service evidence</li>
-        <li><strong>Attendance / discipline:</strong> supports “whole-person” review and enlistment qualification</li>
+        <li><strong>State assessments/EOCs:</strong> confirm required exams and retest plans if needed</li>
+        <li><strong>Endorsement/course alignment:</strong> stay on your academic plan; protect math/science/writing rigor</li>
+        <li><strong>Attendance / discipline:</strong> supports “whole-person” review and eligibility</li>
+        <li><strong>Documentation habits:</strong> keep service hours, leadership roles, awards, and dates organized</li>
       </ul>
     </div>
 
@@ -157,7 +158,7 @@
         <li>Falling behind on graduation requirements while focusing on applications.</li>
       </ul>
       <p style="margin-top:10px; font-size:12px; color: var(--muted);">
-        Advisor note: Use this plan to draft next steps, then verify final requirements on official admissions pages and with local recruiters.
+        Advisor note: Use this plan to draft next steps, then verify final requirements on official admissions pages and with official recruiter channels.
       </p>
     </div>
 
@@ -178,16 +179,16 @@
 
       const pathwayLabel = ({
         academy: 'Service Academy (Officer)',
-        rotc: 'ROTC Scholarship (Officer)',
+        rotc: 'ROTC (Officer)',
         guard: 'National Guard / Reserve',
         enlist: 'Active Duty Enlistment'
       })[pathway] || 'Pathway';
 
-      /* Common pillars (every path) */
+      // Common pillars (all pathways)
       const commonByGrade = {
         8: [
           'Academics: build strong attendance and study habits; take challenging courses when ready.',
-          'Character/Leadership: join 1–2 activities; begin a service and leadership log.',
+          'Character/Leadership: join 1–2 activities; begin a service and leadership log (dates + hours + outcomes).',
           'Fitness: start a basic, safe baseline plan (running, push-ups, core, mobility).'
         ],
         9: [
@@ -196,14 +197,14 @@
           'Fitness: consistency 3–4 days/week; track improvement monthly.'
         ],
         10: [
-          'Academics: increase rigor; identify strongest subjects; avoid schedule gaps.',
-          'Character/Leadership: deepen leadership (officer roles, team captain, mentoring).',
-          'Habits: build a resume file (roles, dates, hours, recognitions).'
+          'Academics: increase rigor (math/science/writing); avoid schedule gaps.',
+          'Character/Leadership: deepen leadership (officer roles, team captain, mentoring) with measurable impact.',
+          'Habits: maintain a “resume file” (roles, dates, hours, recognitions).'
         ],
         11: [
-          'Academics: maintain strong grades; keep challenging course load; plan test dates.',
-          'Character/Leadership: leadership evidence + service impact (not just hours).',
-          'Preparation: practice interviews; refine resume; request recommendation strategy.'
+          'Academics: maintain strong grades; keep challenging course load; plan test dates early.',
+          'Character/Leadership: show sustained responsibility + service impact (not just hours).',
+          'Preparation: practice interviews; refine resume; request recommendations strategically.'
         ],
         12: [
           'Academics: finish strong; confirm graduation requirements are complete.',
@@ -212,140 +213,120 @@
         ]
       };
 
-      /* SST graduation overlay (placeholders you can edit later) */
-      const sstOverlayByGrade = {
+      // Texas-wide graduation overlay (general guardrails)
+      const texasOverlayByGrade = {
         8: [
-          'SST readiness check: build a “four-year plan” draft for credits and endorsement direction.',
-          'Attendance and discipline habits: these affect eligibility and recommendations.'
+          'Texas readiness check: draft a four-year plan (credits + endorsement direction).',
+          'Build attendance and discipline habits (these affect eligibility and recommendations).'
         ],
         9: [
           'Graduation check: verify you are on track for required credits and core sequence.',
-          'EOC awareness: plan courses that lead to required state assessments.'
+          'Assessment check: understand which EOCs may apply later and plan ahead.'
         ],
         10: [
           'Graduation check: confirm endorsement alignment and course sequence.',
-          'Service log: maintain documented hours (leadership + community evidence).'
+          'Documentation: keep service hours and leadership evidence organized.'
         ],
         11: [
-          'Graduation check: audit transcript and EOC status; fix gaps early.',
-          'Testing plan: schedule SAT/ACT/ASVAB based on pathway, while staying on graduation track.'
+          'Graduation check: audit transcript and assessment status; fix gaps early.',
+          'Testing plan: schedule SAT/ACT/ASVAB based on pathway while staying on track.'
         ],
         12: [
-          'Graduation check: confirm all credits, EOCs, and local requirements are complete.',
+          'Graduation check: confirm all credits and local requirements are complete.',
           'Final documents: keep a clean packet (transcript, resume, service log, awards, IDs).'
         ]
       };
 
-      /* Path-specific steps by grade */
+      // Path-specific steps by grade (differentiated)
       const academyByGrade = {
         8: [
-          'Learn the five academies and what “officer” means; start thinking about major/career interests.',
-          'Start building a “whole-person” file: academics, athletics, leadership, service.',
-          'Explore summer leadership camps and STEM programs (save opportunities list).'
+          'Learn what nominations are and why early leadership + fitness consistency matters.',
+          'Start building a whole-person file: academics, athletics, leadership, service, character.'
         ],
         9: [
-          'Aim for honors/AP where appropriate; plan math/science strength (competitive applicants show rigor).',
-          'Join an athletic team or structured fitness program; document performance and roles.',
-          'Begin public speaking / interview comfort (clubs, competitions, presentations).'
+          'Aim for rigorous math/science; build leadership progression (not a single title).',
+          'Join a structured athletic program; document results and roles.'
         ],
         10: [
-          'Research academy summer seminars; track application opening windows.',
-          'Begin SAT/ACT prep plan (academy competitiveness).',
-          'Identify adult mentors for future recommendations (teachers/coaches).'
+          'Research official academy timelines and summer programs; track application windows.',
+          'Start SAT/ACT plan if needed for competitiveness; build a quarterly resume update habit.'
         ],
         11: [
-          'Start candidate portals early; learn nomination process (Members of Congress) and deadlines.',
-          'Plan medical readiness steps; keep health documentation organized.',
-          'Practice formal interviews; build a tight activity/leadership resume with measurable impact.'
+          'Execute: candidate portals + nomination process + interviews (verify official deadlines).',
+          'Plan medical readiness early using official guidance; keep documentation organized.'
         ],
         12: [
-          'Complete nominations, medical, fitness, interviews, and final submissions.',
-          'If not appointed: execute backup plan (ROTC, enlistment with later commissioning, Guard/Reserve).',
-          'Prepare transition: fitness, academics, and leadership habits for the academy environment.'
+          'Complete remaining steps quickly; respond promptly to official requests.',
+          'If no appointment: activate Plan B (ROTC/college) and a safety plan immediately.'
         ]
       };
 
       const rotcByGrade = {
         8: [
-          'Learn ROTC basics: scholarship vs non-scholarship, officer path, commitment structure.',
-          'Begin leadership/service log; ROTC values consistency and maturity.',
-          'Explore local universities offering ROTC; save a list of programs.'
+          'Learn ROTC structure: scholarship vs non-scholarship tracks; commissioning outcomes.',
+          'Start leadership/service log and a fitness habit you can maintain through Grade 12.'
         ],
         9: [
-          'Protect GPA; ROTC scholarships are competitive and reward strong academics.',
-          'Join activities where leadership can grow (team sports, band, robotics, volunteering).',
-          'Start informal fitness readiness; meet school counselor about long-term plan.'
+          'Protect GPA and attendance; identify Texas colleges you could realistically attend that have ROTC.',
+          'Build consistent involvement in 1–2 activities where leadership can grow.'
         ],
         10: [
-          'Begin SAT/ACT planning (many scholarships consider tests; policies can vary).',
-          'Start drafting a ROTC-style resume: roles, achievements, hours, awards.',
-          'Research scholarship cycles and required documents.'
+          'Begin SAT/ACT planning if applicable; verify scholarship expectations on official ROTC pages.',
+          'Draft an ROTC-style resume: leadership roles, awards, service, work experience.'
         ],
         11: [
-          'Execute scholarship applications; line up recommendations and transcripts early.',
-          'Interview preparation; practice explaining “why officer” clearly.',
-          'Compare ROTC at multiple campuses; evaluate majors and cost.'
+          'Execute scholarship/college match; prepare for interviews and medical readiness steps (official).',
+          'Build a robust backup college list aligned to affordability.'
         ],
         12: [
-          'Finalize scholarship decisions; align college admissions and financial plan.',
-          'If no scholarship: plan ROTC participation as a college program with later contracting.',
-          'Prepare transition: fitness, time management, and academics for college + ROTC load.'
+          'Finalize college admissions + ROTC onboarding steps; confirm scholarship conditions officially.',
+          'If no scholarship: plan to join ROTC as a college program and compete for contracting later.'
         ]
       };
 
       const guardByGrade = {
         8: [
-          'Learn Guard/Reserve structure: part-time service + school; roles vary by branch.',
-          'Start building dependable habits: punctuality, attendance, responsibility.',
-          'Explore career interests (technical jobs, medical, aviation, cyber, logistics).'
+          'Learn Guard/Reserve vs Active Duty. Discuss schedule realities with family (sports, work, travel).',
+          'Build disciplined habits: punctuality, attendance, responsibility.'
         ],
         9: [
-          'Protect GPA and attendance; Guard/Reserve still expects reliability and standards.',
-          'Build service and leadership evidence; document hours.',
-          'Begin exploring education benefits concepts (no promises; verify official sources).'
+          'Stay academically and behaviorally strong; reliability matters.',
+          'Build service and leadership evidence; document hours and outcomes.'
         ],
         10: [
-          'Research local units and role types; understand training pipelines and time commitments.',
-          'Begin ASVAB familiarity (not required now, but learn what it measures).',
-          'Maintain fitness baseline; establish discipline record expectations.'
+          'Research official state education benefit information (avoid unofficial claims).',
+          'Begin ASVAB familiarity if job choice matters; maintain fitness baseline.'
         ],
         11: [
-          'Meet with family and counselor to evaluate schedule impact: training, school, graduation requirements.',
-          'If considering enlistment into Guard/Reserve: plan ASVAB prep and discuss timing vs graduation.',
-          'Keep leadership and service evidence; prepare resume packet.'
+          'Evaluate timing vs graduation plan; plan how training schedules may affect senior year.',
+          'Prepare a written question list for official recruiter meetings; bring parent/guardian.'
         ],
         12: [
-          'If joining: ensure graduation plan is complete before training timelines.',
-          'If not joining now: plan college + ROTC/OCS routes as alternate.',
-          'Finalize documentation and transition planning (IDs, transcripts, contacts).'
+          'Confirm contract terms and training dates in writing using official channels.',
+          'Coordinate graduation logistics and create a transition plan for work/school/service.'
         ]
       };
 
       const enlistByGrade = {
         8: [
-          'Understand enlisted roles and job families; start exploring interest areas.',
-          'Build habits that matter for eligibility: attendance, discipline, responsibility.',
-          'Start a simple fitness baseline and a record of activities.'
+          'Explore job families (technical, medical, admin, aviation, cyber) and what training pipelines look like.',
+          'Start habits that matter: attendance, discipline, reliability, fitness.'
         ],
         9: [
-          'Keep grades and discipline strong; eligibility and job options can be affected by records.',
-          'Join structured activities that show teamwork and reliability.',
-          'Begin learning what the ASVAB measures (math, verbal, technical).'
+          'Keep records clean; eligibility and job options can be affected by conduct.',
+          'Begin learning what ASVAB measures; start light practice in weak areas.'
         ],
         10: [
-          'Start ASVAB-style practice; identify strengths/weaknesses.',
-          'Research job families and training pipelines; keep a “jobs to ask about” list.',
-          'Learn benefits vocabulary (education, training, career progression) and verify from official sources.'
+          'Start structured ASVAB prep if you want technical job options later.',
+          'Learn contract basics: job field, training pipeline, obligations (verify from official sources).'
         ],
         11: [
-          'Plan ASVAB testing timeline; focus on job qualification and options.',
-          'Meet with family/counselor; ensure graduation requirements stay on track.',
-          'Build a clean resume packet (work, service, leadership, references).'
+          'Build a written question list for recruiter meetings; bring parent/guardian.',
+          'Plan ASVAB timing; keep graduation plan on track.'
         ],
         12: [
-          'Finalize ASVAB and job selection process; confirm contract details carefully.',
-          'Complete graduation requirements first; avoid training timelines that jeopardize graduation.',
-          'Create a post-training plan: college later, certifications, and long-term career growth.'
+          'Compare multiple branches/jobs; do not sign under pressure.',
+          'Confirm education benefits and training timelines using official sources before committing.'
         ]
       };
 
@@ -359,23 +340,21 @@
       const pathSteps = pathMap[pathway];
 
       const flags = [];
-      if (grade >= 11 && pathway === 'academy') flags.push('Risk flag: Starting academy planning in Grade 11 is late. Use a strong ROTC backup plan and confirm nomination timelines immediately.');
-      if (grade >= 12 && (pathway === 'academy' || pathway === 'rotc')) flags.push('Risk flag: Starting scholarship/appointment planning in Grade 12 is high-risk. Confirm deadlines immediately and execute backups.');
-      if (pathway === 'enlist') flags.push('Note: Enlistment can still lead to commissioning later via programs and education—plan intentionally and verify options with official sources.');
-      flags.push('Always verify requirements on official program pages; this tool is guidance, not final eligibility determination.');
+      if (grade >= 11 && pathway === 'academy') flags.push('Risk flag: Starting academy planning in Grade 11 is late. Confirm nomination timelines immediately and build a strong ROTC backup plan.');
+      if (grade >= 12 && (pathway === 'academy' || pathway === 'rotc')) flags.push('Risk flag: Starting officer scholarship/appointment planning in Grade 12 is high-risk. Confirm deadlines immediately and execute backups.');
+      flags.push('Always verify current requirements on official program pages; this tool provides planning guidance, not final eligibility determination.');
 
-      /* Build output */
       const planBlocks = [];
       for (let g = grade; g <= 12; g++){
         const common = commonByGrade[g] || [];
-        const sst = sstOverlayByGrade[g] || [];
+        const overlay = texasOverlayByGrade[g] || [];
         const specific = (pathSteps && pathSteps[g]) ? pathSteps[g] : [];
 
         planBlocks.push(`
           <div style="margin:12px 0;">
             <div style="display:flex; gap:10px; align-items:baseline; flex-wrap:wrap;">
               <strong style="font-size:15px; color: var(--text);">Grade ${g}</strong>
-              <span style="font-size:12px; color: var(--muted);">Core pillars + pathway-specific actions + SST graduation overlay</span>
+              <span style="font-size:12px; color: var(--muted);">Common pillars + pathway actions + Texas graduation overlay</span>
             </div>
 
             <div class="grid-2" style="margin-top:10px;">
@@ -391,8 +370,8 @@
             </div>
 
             <div class="card" style="margin:10px 0 0;">
-              <h2 style="margin:0 0 6px;">SST graduation readiness overlay</h2>
-              <ul style="margin:6px 0 0 18px;">${sst.map(x => `<li>${x}</li>`).join('')}</ul>
+              <h2 style="margin:0 0 6px;">Texas graduation readiness overlay</h2>
+              <ul style="margin:6px 0 0 18px;">${overlay.map(x => `<li>${x}</li>`).join('')}</ul>
             </div>
           </div>
         `);
@@ -414,9 +393,7 @@
         <div class="card" style="margin-top:12px;">
           <h2 style="margin:0 0 6px;">Action plan summary (copy/paste)</h2>
           <p style="margin:0; color: var(--muted); font-size:13px;">
-            Pathway: ${pathwayLabel} • Start grade: ${grade} •
-            Priorities: Academics + Character/Leadership + Graduation readiness •
-            Next step: Open Student Toolkit for templates and official links.
+            Pathway: ${pathwayLabel} • Start grade: ${grade} • Priorities: Academics + Character/Leadership + Graduation readiness
           </p>
         </div>
       `;
