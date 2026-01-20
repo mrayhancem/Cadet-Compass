@@ -1,73 +1,267 @@
 <!doctype html>
-<html lang='en'>
+<html lang="en">
 <head>
-  <meta charset='utf-8' />
-  <meta name='viewport' content='width=device-width, initial-scale=1' />
-  <title>ROTC | Cadet Compass</title>
-  <link rel='stylesheet' href='assets/styles.css' />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ROTC Pathway | Cadet Compass</title>
+  <meta name="description" content="ROTC officer commissioning pathway overview (Army, Navy, Air Force): academics, SAT/ACT guidance, scholarships, and Texas universities with ROTC units." />
+  <link rel="stylesheet" href="./assets/styles.css" />
+
+  <style>
+    .two-col{ display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .three-col{ display:grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+    .pill-row{ display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
+    .pill{
+      font-size:12px;
+      color: var(--muted);
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      white-space:nowrap;
+    }
+    .score-table{
+      width:100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    .score-table th,
+    .score-table td{
+      border:1px solid rgba(255,255,255,.10);
+      padding:8px 10px;
+      text-align:left;
+      vertical-align:top;
+    }
+    .score-table th{
+      background: rgba(255,255,255,.06);
+      font-weight:600;
+    }
+    .tag{
+      display:inline-block;
+      font-size:11px;
+      padding:3px 8px;
+      border-radius:999px;
+      background: rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
+      color: var(--muted);
+    }
+    @media (max-width: 900px){
+      .two-col,.three-col{ grid-template-columns:1fr; }
+    }
+  </style>
 </head>
+
 <body>
-  <header class='top'>
-    <div class='wrap nav'>
-      <div class='brand'>
-        <img src='assets/compass.svg' alt='Cadet Compass logo' />
-        <div>
-          <div class='title'>Cadet Compass</div>
-          <div class='subtitle'>AI-assisted military pathway advising (Grades 8–12)</div>
+  <div class="top-nav">
+    <div>
+      <a href="./index.html" style="font-weight:700;color:var(--text);">Cadet Compass</a>
+    </div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;">
+      <a href="./roadmap.html">8–12 Roadmap</a>
+      <a href="./academies.html">Service Academies</a>
+      <a href="./rotc.html" style="background: rgba(255,255,255,.06); color: var(--text);">ROTC</a>
+      <a href="./enlistment.html">Enlistment</a>
+      <a href="./resources.html">Student Toolkit</a>
+      <a class="btn" href="./chat.html" style="padding:6px 10px;border-radius:999px;">AI Coach</a>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="logo-wrap">
+        <img src="./assets/compass.svg" alt="Cadet Compass logo">
+      </div>
+      <div>
+        <h1>ROTC — Reserve Officers’ Training Corps</h1>
+        <p class="sub">
+          ROTC is a flexible officer commissioning pathway that combines college education with military training.
+          Students attend a civilian university, participate in ROTC, and commission as officers upon graduation.
+        </p>
+
+        <div class="pill-row">
+          <span class="pill">Officer pathway</span>
+          <span class="pill">Multiple entry points</span>
+          <span class="pill">Scholarship + non-scholarship options</span>
+          <span class="pill">Backup plan friendly</span>
         </div>
       </div>
-      
-      <nav class='links'>
-        <a class='' href='index.html'>Home</a>
-        <a class='' href='roadmap.html'>8–12 Roadmap</a>
-        <a class='' href='academies.html'>Service Academies</a>
-        <a class='active' href='rotc.html'>ROTC</a>
-        <a class='' href='enlistment.html'>Enlistment</a>
-        <a class='' href='toolkit.html'>Toolkit</a>
-        <a class='' href='chat.html'>AI Coach</a>
-      </nav>
-
     </div>
-  </header>
-  <main class='wrap'>
-    
-<section class='card'>
-  <span class='pill'>Officer Pathway</span>
-  <h1 class='h1'>ROTC (Reserve Officers’ Training Corps)</h1>
-  <p class='lead'>ROTC allows students to earn a college degree while training to commission as an officer. Scholarships and campus-based options vary by branch.</p>
-  <div class='grid3'>
-    <div class='card'><h2 class='h2'>Army ROTC</h2><p class='muted'>Scholarships + campus-based contracting.</p><p><a href='https://www.goarmy.com/careers-and-jobs/find-your-path/army-officers/rotc.html' target='_blank' rel='noopener'>Official info</a></p></div>
-    <div class='card'><h2 class='h2'>Navy ROTC</h2><p class='muted'>Navy/Marine options; scholarship driven.</p><p><a href='https://www.nrotc.navy.mil/' target='_blank' rel='noopener'>Official info</a></p></div>
-    <div class='card'><h2 class='h2'>Air Force ROTC</h2><p class='muted'>College-based commissioning pathway.</p><p><a href='https://www.afrotc.com/' target='_blank' rel='noopener'>Official info</a></p></div>
-  </div>
-</section>
 
-<section class='grid2'>
-  <div class='card'>
-    <h2 class='h2'>ROTC scholarship readiness checklist</h2>
-    <ul class='muted'>
-      <li>Academics: plan a rigorous schedule and keep grades strong.</li>
-      <li>Fitness: train consistently and document improvement.</li>
-      <li>Leadership: build evidence of initiative (captain roles, officer roles, projects).</li>
-      <li>Service and character: sustained community involvement and positive discipline history.</li>
-      <li>Interview readiness: practice a clear “why service” narrative.</li>
-    </ul>
-    <div class='callout ok'><strong>Practical advantage:</strong> ROTC can be a strong Plan A or Plan B for students who want an officer career but prefer a traditional college experience.</div>
-  </div>
+    <!-- ROTC TYPES -->
+    <div class="card">
+      <h2>ROTC branches</h2>
+      <div class="three-col">
+        <div class="card" style="margin:0;">
+          <h2 style="margin:0 0 6px;">Army ROTC</h2>
+          <ul>
+            <li>Largest ROTC program</li>
+            <li>Available at many universities</li>
+            <li>Scholarship and non-scholarship tracks</li>
+          </ul>
+        </div>
+        <div class="card" style="margin:0;">
+          <h2 style="margin:0 0 6px;">Navy / Marine ROTC</h2>
+          <ul>
+            <li>Navy and Marine Corps officer pathways</li>
+            <li>More structured entry points</li>
+            <li>STEM emphasis for some options</li>
+          </ul>
+        </div>
+        <div class="card" style="margin:0;">
+          <h2 style="margin:0 0 6px;">Air Force ROTC</h2>
+          <ul>
+            <li>Nationwide university network</li>
+            <li>Competitive continuation process</li>
+            <li>Strong academic and fitness focus</li>
+          </ul>
+        </div>
+      </div>
+    </div>
 
-  <div class='card'>
-    <h2 class='h2'>Local example (Texas A&M University–Corpus Christi)</h2>
-    <p class='muted'>Cadet Compass includes campus-based examples to make pathways concrete. Confirm current details with the host program.</p>
-    <div class='code' id='tamuccRotcBox'>Loading example…</div>
-    <p class='small'>Source: local program info file included in this project package.</p>
-  </div>
-</section>
+    <!-- SAT / ACT -->
+    <div class="card">
+      <h2>SAT / ACT guidance (typical ranges)</h2>
+      <p class="sub">
+        These are <strong>advisory ranges</strong>, not hard cutoffs. ROTC evaluates the whole student
+        (academics, leadership, fitness, character). Always verify with official ROTC scholarship pages.
+      </p>
 
-  </main>
-  <footer class='wrap foot'>
-    <div>Cadet Compass • Track III Educator Project • Free hosting: GitHub Pages + Netlify</div>
-    <div class='footLinks'><a href='credits.html'>Credits</a> • <a href='responsible-ai.html'>Responsible AI</a> • <a href='demo.html'>Demo</a></div>
-  </footer>
-  <script src='js/app.js'></script>
+      <table class="score-table">
+        <thead>
+          <tr>
+            <th>Program</th>
+            <th>Typical SAT Range</th>
+            <th>Typical ACT Range</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Army ROTC</td>
+            <td>1000–1200+</td>
+            <td>19–26+</td>
+            <td>Leadership and fitness can offset mid-range scores</td>
+          </tr>
+          <tr>
+            <td>Navy ROTC</td>
+            <td>1100–1300+</td>
+            <td>22–28+</td>
+            <td>STEM majors often expected for Navy options</td>
+          </tr>
+          <tr>
+            <td>Marine Option (NROTC)</td>
+            <td>1000–1200+</td>
+            <td>20–26+</td>
+            <td>Physical fitness heavily weighted</td>
+          </tr>
+          <tr>
+            <td>Air Force ROTC</td>
+            <td>1150–1350+</td>
+            <td>24–30+</td>
+            <td>Competitive continuation after sophomore year</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="subtle-note">
+        Scores shown reflect commonly observed competitive profiles as of January 2026.
+      </p>
+    </div>
+
+    <!-- TEXAS UNIVERSITIES -->
+    <div class="card">
+      <h2>Texas universities with ROTC (as of January 2026)</h2>
+      <p class="sub">
+        List focuses on commonly attended Texas public institutions. Students may also attend
+        cross-town programs through partner schools.
+      </p>
+
+      <div class="three-col">
+        <div class="card" style="margin:0;">
+          <h2 style="margin:0 0 6px;">Army ROTC</h2>
+          <ul>
+            <li>Texas A&amp;M University</li>
+            <li>University of Texas at Austin</li>
+            <li>UT San Antonio</li>
+            <li>Texas State University</li>
+            <li>Texas Tech University</li>
+            <li>University of Houston</li>
+            <li>UT Rio Grande Valley</li>
+            <li>TAMU–Corpus Christi</li>
+          </ul>
+        </div>
+
+        <div class="card" style="margin:0;">
+          <h2 style="margin:0 0 6px;">Navy / Marine ROTC</h2>
+          <ul>
+            <li>Texas A&amp;M University</li>
+            <li>University of Texas at Austin</li>
+            <li>Rice University</li>
+            <li>University of Houston</li>
+          </ul>
+        </div>
+
+        <div class="card" style="margin:0;">
+          <h2 style="margin:0 0 6px;">Air Force ROTC</h2>
+          <ul>
+            <li>Texas A&amp;M University</li>
+            <li>University of Texas at Austin</li>
+            <li>UT San Antonio</li>
+            <li>Texas Tech University</li>
+            <li>University of Houston</li>
+            <li>UT Dallas</li>
+            <li>Texas State University</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="subtle-note">
+        Exact unit availability and cross-town agreements must be verified on official ROTC unit websites.
+      </p>
+    </div>
+
+    <!-- ADVISING -->
+    <div class="card">
+      <h2>Advising priorities (grades 8–12)</h2>
+      <div class="two-col">
+        <div class="card" style="margin:0;">
+          <h2 style="margin:0 0 6px;">Always common</h2>
+          <ul>
+            <li>Strong academics and graduation progress</li>
+            <li>Leadership with documented responsibility</li>
+            <li>Fitness consistency</li>
+            <li>Good character and reliability</li>
+          </ul>
+        </div>
+        <div class="card" style="margin:0;">
+          <h2 style="margin:0 0 6px;">Upper grades focus</h2>
+          <ul>
+            <li>Scholarship applications and interviews</li>
+            <li>Medical qualification planning</li>
+            <li>Backup plan confirmation</li>
+            <li>College admissions alignment</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- NEXT -->
+    <div class="card">
+      <h2>Next steps</h2>
+      <ul>
+        <li>Use the <strong>8–12 Roadmap</strong> to align ROTC with graduation requirements.</li>
+        <li>Compare ROTC vs Service Academy timelines.</li>
+        <li>Use the AI Coach to translate requirements into a personal action plan.</li>
+      </ul>
+    </div>
+
+    <div class="footer">
+      Cadet Compass • Track III Educator Project • Free hosting: GitHub Pages + Netlify •
+      <a href="./credits.html">Credits</a> • <a href="./responsible-ai.html">Responsible AI</a> • <a href="./demo.html">Demo</a>
+    </div>
+
+  </div>
 </body>
 </html>
