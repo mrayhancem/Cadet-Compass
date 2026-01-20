@@ -1,127 +1,134 @@
-// Netlify Functions (Node) runtime supports global fetch in modern runtimes.
-export default async (request, context) => {
-  // CORS (optional; same-origin requests typically fine, but safe to include)
-  const corsHeaders = {
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Headers": "Content-Type",
-    "Access-Control-Allow-Methods": "POST, OPTIONS",
-  };
+/**
+ * Netlify Function: /.netlify/functions/chat
+ * Optional live AI coach. If OPENAI_API_KEY isn't set, frontend falls back to local guidance.
+ *
+ * Env vars (Netlify):
+ * - OPENAI_API_KEY   (required for AI mode)
+ * - OPENAI_MODEL     (recommended: gpt-5-mini)
+ */
 
-  if (request.method === "OPTIONS") {
-    return new Response("", { status: 204, headers: corsHeaders });
+exports.handler = async (event) => {
+  // Allow only POST
+  if (event.httpMethod !== "POST") {
+    return json(405, { error: "Method not allowed" });
   }
 
-  if (request.method !== "POST") {
-    return new Response(JSON.stringify({ error: "Method not allowed" }), {
-      status: 405,
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
-    });
-  }
-
-  const apiKey = process.env.OPENAI_API_KEY;
-  if (!apiKey) {
-    return new Response(JSON.stringify({ error: "OPENAI_API_KEY not set" }), {
-      status: 501,
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
-    });
-  }
-
+  // Parse JSON
   let payload;
   try {
-    payload = await request.json();
-  } catch {
-    return new Response(JSON.stringify({ error: "Invalid JSON" }), {
-      status: 400,
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
-    });
+    payload = JSON.parse(event.body || "{}");
+  } catch (e) {
+    return json(400, { error: "Invalid JSON" });
   }
 
   const message = String(payload?.message || "").trim().slice(0, 2000);
   if (!message) {
-    return new Response(JSON.stringify({ error: "Message required" }), {
-      status: 400,
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
-    });
+    return json(400, { error: "Message required" });
   }
 
-  const system = `You are Cadet Coach for a Grades 8–12 military-pathway advising website (Texas context allowed).
+  const apiKey = process.env.OPENAI_API_KEY;
+  if (!apiKey) {
+    // Frontend should interpret this and fall back locally
+    return json(501, { error: "OPENAI_API_KEY not set" });
+  }
 
-Rules:
-- Do not request or store sensitive personal data.
-- Do not promise eligibility, dollar amounts, or exact deadlines.
-- Provide grade-appropriate guidance (8–12) with practical next steps.
-- Always include: what to verify on official sources (academy/ROTC/branch sites).
-- Be concise, structured, and practical.
-- If asked for disallowed/unsafe content, refuse and redirect to safe guidance.`;
+  const model = (process.env.OPENAI_MODEL || "gpt-5-mini").trim();
 
-  const model = process.env.OPENAI_MODEL || "gpt-5-mini";
+  // System guardrails: safe advising + verification
+  const system = [
+    "You are Cadet Coach for a Grades 8–12 military pathway advising website.",
+    "",
+    "Rules:",
+    "- Do not request or store sensitive personal data (full name, address, SSN, medical details).",
+    "- Do not promise eligibility, dollar amounts, or exact deadlines.",
+    "- Provide grade-appropriate guidance for grades 8–12.",
+    "- Always tell the user to verify requirements on official sources (academies/ROTC/branch/recruiter pages).",
+    "- Be concise, structured, and practical: bullets, short headings, next steps, risks, what to verify.",
+    "- If asked for disallowed or unsafe instructions, refuse and redirect to safe guidance."
+  ].join("\n");
 
-  // Responses API request body (recommended in OpenAI quickstart)
-  // We ask for a single, structured response and keep it short.
-  const body = {
-    model,
-    input: [
-      {
-        role: "system",
-        content: [{ type: "text", text: system }],
-      },
-      {
-        role: "user",
-        content: [{ type: "text", text: message }],
-      },
-    ],
-    // Keep it stable for advising:
-    temperature: 0.2,
-    max_output_tokens: 600,
-  };
+  // Log marker so you can see invocations in Netlify function logs
+  console.log("[cadet-compass] chat invoked", { model });
 
   try {
+    // Use Responses API (recommended for gpt-5 family)
     const resp = await fetch("https://api.openai.com/v1/responses", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${apiKey}`,
+        Authorization: `Bearer ${apiKey}`
       },
-      body: JSON.stringify(body),
+      body: JSON.stringify({
+        model,
+        input: [
+          { role: "system", content: system },
+          { role: "user", content: message }
+        ],
+        // Keep it stable and “advisor-like”
+        temperature: 0.2,
+        max_output_tokens: 700
+      })
     });
 
-    const raw = await resp.text();
+    const text = await resp.text();
 
     if (!resp.ok) {
-      // Return the upstream payload (trimmed) to make debugging easy in Netlify function logs.
-      return new Response(
-        JSON.stringify({
-          error: "Upstream error",
-          status: resp.status,
-          details: raw.slice(0, 1200),
-        }),
-        {
-          status: 502,
-          headers: { ...corsHeaders, "Content-Type": "application/json" },
-        }
-      );
+      // Return OpenAI error text in a safe, truncated way for debugging
+      console.error("[cadet-compass] upstream error", {
+        status: resp.status,
+        body: text.slice(0, 900)
+      });
+
+      return json(502, {
+        error: "Upstream error",
+        status: resp.status,
+        details: text.slice(0, 900)
+      });
     }
 
-    // Parse the response
-    const data = JSON.parse(raw);
+    const data = JSON.parse(text);
 
-    // OpenAI quickstart shows `response.output_text` usage in SDKs; for raw JSON,
-    // the "output_text" field is commonly present.
-    const reply =
-      (typeof data?.output_text === "string" && data.output_text.trim()) ||
-      "No reply.";
+    // Extract output text robustly
+    const reply = extractResponseText(data) || "No reply.";
 
-    return new Response(JSON.stringify({ reply }), {
-      status: 200,
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
-    });
+    return json(200, { reply });
   } catch (e) {
-    return new Response(
-      JSON.stringify({ error: "Network error", details: String(e) }),
-      {
-        status: 502,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      }
-    );
+    console.error("[cadet-compass] network/runtime error", String(e));
+    return json(502, { error: "Network error", details: String(e) });
   }
 };
+
+function json(statusCode, obj) {
+  return {
+    statusCode,
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+      "Cache-Control": "no-store"
+    },
+    body: JSON.stringify(obj)
+  };
+}
+
+// Works across Responses API shapes
+function extractResponseText(data) {
+  // Common: data.output_text
+  if (typeof data?.output_text === "string" && data.output_text.trim()) {
+    return data.output_text.trim();
+  }
+
+  // Fallback: search through output array
+  const out = data?.output;
+  if (Array.isArray(out)) {
+    for (const item of out) {
+      const content = item?.content;
+      if (!Array.isArray(content)) continue;
+      for (const c of content) {
+        if (c?.type === "output_text" && typeof c?.text === "string" && c.text.trim()) {
+          return c.text.trim();
+        }
+      }
+    }
+  }
+
+  return "";
+}
