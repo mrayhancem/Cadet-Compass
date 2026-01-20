@@ -33,6 +33,23 @@
       font-size: 13px;
       line-height: 1.35;
     }
+    .form-row label{
+      display:block;
+      font-size:12px;
+      color: var(--muted);
+      margin: 10px 0 6px;
+    }
+    .form-row input, .form-row textarea, .form-row select{
+      width:100%;
+      padding:10px 10px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      color: var(--text);
+      outline:none;
+    }
+    .form-row textarea{ resize:vertical; min-height: 84px; }
+    .kicker{ font-size:12px; color: var(--muted); margin-bottom:8px; }
     table{
       width:100%;
       border-collapse:collapse;
@@ -122,6 +139,79 @@
     </div>
 
     <div class="card">
+      <h2>Interactive tools (no logins; stored locally on this device)</h2>
+      <p class="mini" style="margin-top:0;">
+        These tools create draft text you can copy into your own resume template or advising packet. Nothing is uploaded by this page.
+      </p>
+
+      <div class="grid-2">
+        <div class="card" style="margin:0;">
+          <h2 style="margin:0 0 6px;">Military Resume Builder</h2>
+          <p class="mini" style="margin-top:0;">
+            Builds a one-page resume draft emphasizing leadership, service, academics, and fitness. Export as text and paste into your own format.
+          </p>
+
+          <div class="form-row">
+            <label for="rbName">Name</label>
+            <input id="rbName" placeholder="Student name" />
+
+            <label for="rbGrade">Grade</label>
+            <input id="rbGrade" placeholder="8–12" />
+
+            <label for="rbLead">Leadership (roles, impact)</label>
+            <textarea id="rbLead" rows="4" placeholder="Example: Team captain; led tutoring project; organized fundraiser..."></textarea>
+
+            <label for="rbActs">Service / Activities</label>
+            <textarea id="rbActs" rows="4" placeholder="Clubs, volunteering, work experience, athletics..."></textarea>
+
+            <label for="rbAcad">Academics (courses, awards)</label>
+            <textarea id="rbAcad" rows="4" placeholder="Honors/AP/dual credit (if applicable), awards, GPA..."></textarea>
+
+            <label for="rbFit">Fitness (sports, training)</label>
+            <textarea id="rbFit" rows="3" placeholder="Sports, training habits, goals..."></textarea>
+
+            <button class="btn" id="btnResume" type="button" style="margin-top:10px;">Generate resume text</button>
+          </div>
+
+          <div class="card" style="margin-top:12px;">
+            <div class="kicker">Generated resume (copy/paste)</div>
+            <pre class="toolbox" id="resumeOut" style="margin:0;"></pre>
+          </div>
+        </div>
+
+        <div class="card" style="margin:0;">
+          <h2 style="margin:0 0 6px;">Interview Story Bank</h2>
+          <p class="mini" style="margin-top:0;">
+            Scholarship and officer interviews reward clear stories. Capture 6 stories now and reuse them:
+            leadership, failure, ethics, teamwork, service, resilience.
+          </p>
+
+          <div class="form-row">
+            <label for="sbPrompt">Story prompt</label>
+            <select id="sbPrompt">
+              <option value="leadership">A time you led others</option>
+              <option value="failure">A failure and what you learned</option>
+              <option value="ethics">An ethics decision you made</option>
+              <option value="teamwork">A teamwork conflict you resolved</option>
+              <option value="service">Why you want to serve</option>
+              <option value="resilience">A challenge you overcame</option>
+            </select>
+
+            <label for="sbNotes">Your story notes</label>
+            <textarea id="sbNotes" rows="6" placeholder="Situation, actions, result, what you learned..."></textarea>
+
+            <button class="btn" id="btnStory" type="button" style="margin-top:10px;">Save story</button>
+          </div>
+
+          <div class="card" style="margin-top:12px;">
+            <div class="kicker">Saved stories (stored locally on this device)</div>
+            <div id="storyList" class="mini"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
       <h2>Pathway checklists (quick triage)</h2>
       <div class="grid-2">
         <div class="card" style="margin:0;">
@@ -167,7 +257,7 @@ NAME
 City, TX | Phone | Email | (optional) LinkedIn
 
 GOAL (1 line)
-Example: Seeking an officer-pathway opportunity through Service Academy or ROTC; focused on leadership, academics, and service.
+Example: Pursuing an officer-pathway option (Service Academy or ROTC); focused on leadership, academics, and service.
 
 EDUCATION
 High School, City, TX — Expected Grad: 20__
@@ -198,7 +288,7 @@ SKILLS / CERTIFICATIONS
         <div class="card" style="margin:0;">
           <h2 style="margin:0 0 8px;">B) Leadership / service log</h2>
           <div class="toolbox" aria-label="Leadership log template">
-LEADERSHIP & SERVICE LOG (keep this updated monthly)
+LEADERSHIP & SERVICE LOG (update monthly)
 
 1) Role / Activity:
    Organization:
@@ -344,12 +434,12 @@ Official sources to verify (links):
     </div>
 
     <div class="card">
-      <h2>How to use the AI Coach safely</h2>
-      <ul class="mini">
-        <li>Use it to translate requirements into a checklist and identify what you must verify officially.</li>
-        <li>Do not share sensitive personal info (SSN, medical details, addresses, account numbers).</li>
-        <li>For final requirements, always confirm using the official links above.</li>
-      </ul>
+      <h2>Verification checklist (responsible advising)</h2>
+      <ol class="mini">
+        <li>Confirm requirements on an official website (academy / ROTC / branch).</li>
+        <li>Capture the page title + date accessed in your notes.</li>
+        <li>When a requirement changes, update your plan and save the new source.</li>
+      </ol>
       <p class="mini">
         See <a href="./responsible-ai.html">Responsible AI</a> and <a href="./credits.html">Credits</a> for tool disclosure.
       </p>
@@ -361,5 +451,7 @@ Official sources to verify (links):
     </div>
 
   </div>
+
+  <script src="./js/app.js"></script>
 </body>
 </html>
