@@ -1,51 +1,55 @@
 /**
  * Netlify Function: /api/chat
  *
- * Purpose: Optional live AI coach.
- * - If OPENAI_API_KEY isn't set, the frontend should fall back to local guidance.
- *
- * Env vars in Netlify:
+ * Env vars required in Netlify:
  *   OPENAI_API_KEY = sk-...
- *   OPENAI_MODEL   = gpt-5-mini (recommended) OR any supported model
+ * Optional:
+ *   OPENAI_MODEL   = gpt-5-mini
  */
 
-export default async (request, context) => {
-  if (request.method !== "POST") {
-    return new Response(JSON.stringify({ error: "Method not allowed" }), {
-      status: 405,
-      headers: { "Content-Type": "application/json" },
-    });
-  }
-
-  const apiKey = process.env.OPENAI_API_KEY;
-  if (!apiKey) {
-    return new Response(JSON.stringify({ error: "OPENAI_API_KEY not set" }), {
-      status: 501,
-      headers: { "Content-Type": "application/json" },
-    });
-  }
-
-  let payload;
+exports.handler = async (event) => {
   try {
-    payload = await request.json();
-  } catch (e) {
-    return new Response(JSON.stringify({ error: "Invalid JSON" }), {
-      status: 400,
-      headers: { "Content-Type": "application/json" },
-    });
-  }
+    // Only allow POST
+    if (event.httpMethod !== "POST") {
+      return {
+        statusCode: 405,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ error: "Method not allowed" }),
+      };
+    }
 
-  const message = String(payload?.message || "").slice(0, 2000).trim();
-  if (!message) {
-    return new Response(JSON.stringify({ error: "Message required" }), {
-      status: 400,
-      headers: { "Content-Type": "application/json" },
-    });
-  }
+    const apiKey = process.env.OPENAI_API_KEY;
+    if (!apiKey) {
+      return {
+        statusCode: 501,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ error: "OPENAI_API_KEY not set" }),
+      };
+    }
 
-  const model = process.env.OPENAI_MODEL || "gpt-5-mini";
+    let payload;
+    try {
+      payload = JSON.parse(event.body || "{}");
+    } catch (e) {
+      return {
+        statusCode: 400,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ error: "Invalid JSON" }),
+      };
+    }
 
-  const system = `You are Cadet Coach for a Texas student advising website about military pathways (Grades 8–12).
+    const message = String(payload.message || "").slice(0, 2000).trim();
+    if (!message) {
+      return {
+        statusCode: 400,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ error: "Message required" }),
+      };
+    }
+
+    const model = process.env.OPENAI_MODEL || "gpt-5-mini";
+
+    const system = `You are Cadet Coach for a Texas student advising website about military pathways (Grades 8–12).
 
 Rules:
 - Do not request sensitive personal data.
@@ -55,18 +59,16 @@ Rules:
 - Be concise, structured, and practical.
 - If user asks for disallowed content, refuse and redirect to safe guidance.`;
 
-  // Use Responses API (recommended for newer models)
-  const body = {
-    model,
-    input: [
-      { role: "system", content: system },
-      { role: "user", content: message },
-    ],
-    // Keep deterministic, counselor-style.
-    temperature: 0.2,
-  };
+    // Responses API (recommended)
+    const body = {
+      model,
+      input: [
+        { role: "system", content: system },
+        { role: "user", content: message },
+      ],
+      temperature: 0.2,
+    };
 
-  try {
     const resp = await fetch("https://api.openai.com/v1/responses", {
       method: "POST",
       headers: {
@@ -78,27 +80,22 @@ Rules:
 
     if (!resp.ok) {
       const errText = await resp.text();
-      return new Response(
-        JSON.stringify({
+      return {
+        statusCode: 502,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
           error: "Upstream error",
-          details: errText.slice(0, 800),
+          details: errText.slice(0, 1000),
         }),
-        {
-          status: 502,
-          headers: { "Content-Type": "application/json" },
-        }
-      );
+      };
     }
 
     const data = await resp.json();
 
-    // Responses API can return output in different shapes; handle common patterns.
+    // Extract output text robustly
     let reply = "";
-
-    // 1) Many responses include output_text
     if (typeof data.output_text === "string") reply = data.output_text;
 
-    // 2) Or they include output array with message content parts
     if (!reply && Array.isArray(data.output)) {
       const parts = [];
       for (const o of data.output) {
@@ -115,14 +112,16 @@ Rules:
 
     if (!reply) reply = "No reply.";
 
-    return new Response(JSON.stringify({ reply }), {
-      status: 200,
+    return {
+      statusCode: 200,
       headers: { "Content-Type": "application/json" },
-    });
+      body: JSON.stringify({ reply }),
+    };
   } catch (e) {
-    return new Response(
-      JSON.stringify({ error: "Network error", details: String(e) }),
-      { status: 502, headers: { "Content-Type": "application/json" } }
-    );
+    return {
+      statusCode: 502,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ error: "Function crash", details: String(e) }),
+    };
   }
 };
