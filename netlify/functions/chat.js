@@ -1,47 +1,45 @@
 /**
- * Netlify Function: /api/chat
- *
- * Purpose: Live AI coach (optional). If OPENAI_API_KEY isn't set,
- * the frontend falls back to local guidance.
- *
- * Notes:
- * - Uses OpenAI "Responses" API (recommended for newer models).
- * - Avoids unsupported parameters (e.g., temperature for some models like gpt-5-mini).
+ * Netlify Function: /.netlify/functions/chat  (also via /api/chat redirect)
+ * Most compatible format: CommonJS exports.handler
  */
 
-export default async (request, context) => {
+exports.handler = async function (event, context) {
   // Only allow POST
-  if (request.method !== "POST") {
-    return new Response(JSON.stringify({ error: "Method not allowed" }), {
-      status: 405,
+  if (event.httpMethod !== "POST") {
+    return {
+      statusCode: 405,
       headers: { "Content-Type": "application/json" },
-    });
+      body: JSON.stringify({ error: "Method not allowed" }),
+    };
   }
 
   const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) {
-    return new Response(JSON.stringify({ error: "OPENAI_API_KEY not set" }), {
-      status: 501,
+    return {
+      statusCode: 501,
       headers: { "Content-Type": "application/json" },
-    });
+      body: JSON.stringify({ error: "OPENAI_API_KEY not set" }),
+    };
   }
 
   let payload;
   try {
-    payload = await request.json();
+    payload = JSON.parse(event.body || "{}");
   } catch (e) {
-    return new Response(JSON.stringify({ error: "Invalid JSON" }), {
-      status: 400,
+    return {
+      statusCode: 400,
       headers: { "Content-Type": "application/json" },
-    });
+      body: JSON.stringify({ error: "Invalid JSON" }),
+    };
   }
 
-  const message = String(payload?.message || "").slice(0, 2000).trim();
+  const message = String(payload.message || "").slice(0, 2000).trim();
   if (!message) {
-    return new Response(JSON.stringify({ error: "Message required" }), {
-      status: 400,
+    return {
+      statusCode: 400,
       headers: { "Content-Type": "application/json" },
-    });
+      body: JSON.stringify({ error: "Message required" }),
+    };
   }
 
   const system = `You are Cadet Coach for a K-12 school advising website.
@@ -56,21 +54,13 @@ Rules:
 
   const model = (process.env.OPENAI_MODEL || "gpt-5-mini").trim();
 
-  // OpenAI Responses API body
-  // IMPORTANT: Do NOT send "temperature" if using models that don't support it.
+  // Responses API payload (do NOT send temperature)
   const body = {
     model,
     input: [
-      {
-        role: "system",
-        content: [{ type: "text", text: system }],
-      },
-      {
-        role: "user",
-        content: [{ type: "text", text: message }],
-      },
+      { role: "system", content: [{ type: "text", text: system }] },
+      { role: "user", content: [{ type: "text", text: message }] },
     ],
-    // Keep it controlled and safe; adjust as needed
     max_output_tokens: 600,
   };
 
@@ -84,56 +74,35 @@ Rules:
       body: JSON.stringify(body),
     });
 
+    const text = await resp.text();
+
     if (!resp.ok) {
-      const errText = await resp.text();
-      return new Response(
-        JSON.stringify({
-          error: "Upstream error",
-          details: errText.slice(0, 1200),
-          model,
-        }),
-        {
-          status: 502,
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-    }
-
-    const data = await resp.json();
-
-    // Responses API convenience field (usually present)
-    let reply = data?.output_text;
-
-    // Fallback extraction if output_text isn't present
-    if (!reply) {
-      try {
-        const out = data?.output || [];
-        // find first message-like output
-        const msg = out.find((x) => x.type === "message");
-        const parts = msg?.content || [];
-        reply = parts
-          .filter((p) => p.type === "output_text" || p.type === "text")
-          .map((p) => p.text || "")
-          .join("\n")
-          .trim();
-      } catch (e) {
-        // ignore
-      }
-    }
-
-    if (!reply) reply = "No reply.";
-
-    return new Response(JSON.stringify({ reply, model }), {
-      status: 200,
-      headers: { "Content-Type": "application/json" },
-    });
-  } catch (e) {
-    return new Response(
-      JSON.stringify({ error: "Network error", details: String(e), model }),
-      {
-        status: 502,
+      // Return the real upstream error so you see it in Network + Netlify logs
+      return {
+        statusCode: 502,
         headers: { "Content-Type": "application/json" },
-      }
-    );
+        body: JSON.stringify({
+          error: "Upstream error",
+          status: resp.status,
+          model,
+          details: text.slice(0, 1500),
+        }),
+      };
+    }
+
+    const data = JSON.parse(text);
+    const reply = (data && data.output_text) ? data.output_text : "No reply.";
+
+    return {
+      statusCode: 200,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ reply, model }),
+    };
+  } catch (e) {
+    return {
+      statusCode: 502,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ error: "Network error", model, details: String(e) }),
+    };
   }
 };
