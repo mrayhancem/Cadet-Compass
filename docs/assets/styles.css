@@ -32,6 +32,17 @@ html, body{
 
 img{ max-width:100%; height:auto; }
 
+/* Prevent legacy pages from rendering giant hero images */
+.hero img,
+.header img,
+.banner img,
+.logo img,
+svg.hero,
+svg.banner{
+  max-width: 100%;
+  height: auto;
+}
+
 a{
   color: var(--accent);
   text-decoration: none;
@@ -194,6 +205,41 @@ hr{
 .card li{ margin: 4px 0; }
 
 /* =========================
+   Tables (fix roadmap readability)
+   ========================= */
+.table-wrap{
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+table{
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 720px; /* enables horizontal scroll on small screens */
+  background: rgba(255,255,255,.02);
+}
+
+th, td{
+  text-align: left;
+  vertical-align: top;
+  padding: 10px 10px;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+  color: var(--muted);
+  font-size: 13px;
+}
+
+th{
+  color: var(--text);
+  font-weight: 700;
+  background: rgba(255,255,255,.03);
+}
+
+tr:hover td{
+  background: rgba(255,255,255,.02);
+}
+
+/* =========================
    Grids
    ========================= */
 .link-grid{
@@ -202,6 +248,36 @@ hr{
   gap: 10px;
 }
 .link-grid .card{ margin: 0; }
+
+.grid-2{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+/* =========================
+   Form controls
+   ========================= */
+label{
+  display:block;
+  font-size: 13px;
+  color: var(--muted);
+  margin: 6px 0 6px;
+}
+
+select, input, textarea{
+  width: 100%;
+  padding: 10px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(0,0,0,.20);
+  color: var(--text);
+  outline: none;
+}
+
+select:focus, input:focus, textarea:focus{
+  border-color: rgba(124,200,255,.45);
+}
 
 /* =========================
    Footer
@@ -222,5 +298,6 @@ hr{
   .logo-wrap{ width: 84px; height: 84px; }
   .logo-wrap img{ width: 70px; height: 70px; }
   .link-grid{ grid-template-columns: 1fr; }
+  .grid-2{ grid-template-columns: 1fr; }
   .hero h1{ font-size: 24px; }
 }
