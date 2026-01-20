@@ -4,6 +4,7 @@
   <meta charset='utf-8' />
   <meta name='viewport' content='width=device-width, initial-scale=1' />
   <title>Demo | Cadet Compass</title>
+  <meta name='description' content='Digital demo for Cadet Compass (Track III Educator). Links to the live site, key features, and optional video walkthrough.' />
   <link rel='stylesheet' href='assets/styles.css' />
 </head>
 <body>
@@ -16,7 +17,7 @@
           <div class='subtitle'>AI-assisted military pathway advising (Grades 8–12)</div>
         </div>
       </div>
-      
+
       <nav class='links'>
         <a class='' href='index.html'>Home</a>
         <a class='' href='roadmap.html'>8–12 Roadmap</a>
@@ -26,34 +27,78 @@
         <a class='' href='toolkit.html'>Toolkit</a>
         <a class='' href='chat.html'>AI Coach</a>
       </nav>
-
     </div>
   </header>
-  <main class='wrap'>
-    
-<section class='card'>
-  <h1 class='h1'>Digital Demo</h1>
-  <p class='lead'>Judges and reviewers can explore the project using the links below. This page is designed to satisfy the “video or other electronic demonstration” expectation for Track III.</p>
-  <div class='grid2'>
-    <div class='card'>
-      <h2 class='h2'>Live Site</h2>
-      <p class='muted'>Replace the placeholder links after publishing.</p>
-      <div class='code'>GitHub Pages: https://&lt;YOUR_GITHUB_USERNAME&gt;.github.io/cadet-compass/
-Netlify (optional): https://&lt;YOUR_SITE&gt;.netlify.app/</div>
-    </div>
-    <div class='card'>
-      <h2 class='h2'>4-minute video (optional, recommended)</h2>
-      <p class='muted'>Record a 4-minute walkthrough (screen recording) and host it unlisted. Place the link in the submission PDF. The guidebook requests a video or other electronic demo for Track III.</p>
-      <div class='code'>Video link: https://youtu.be/&lt;YOUR_VIDEO_ID&gt;</div>
-    </div>
-  </div>
-</section>
 
+  <main class='wrap'>
+    <section class='card'>
+      <span class='pill'>Digital demo</span>
+      <h1 class='h1'>Cadet Compass — Judge/Reviewer Demo Links</h1>
+      <p class='lead'>
+        This page is designed to satisfy the Track III expectation of a “video or other electronic demonstration.”
+        The primary demonstration is the live, interactive website (no login required).
+      </p>
+      <div class='callout warn'>
+        <strong>Privacy note:</strong> The AI Coach is for general advising only. Do not enter student names, addresses, SSNs, medical details, or other sensitive personal information.
+      </div>
+    </section>
+
+    <section class='grid2'>
+      <div class='card'>
+        <h2 class='h2'>Live site (primary demo)</h2>
+        <p class='muted'>
+          Open the live site and explore the pages and AI Coach workflow.
+        </p>
+
+        <div class='callout'>
+          <div><strong>Live URL:</strong> <a href='https://cadetcompass.netlify.app/' target='_blank' rel='noopener'>https://cadetcompass.netlify.app/</a></div>
+          <div style='margin-top:6px;'><strong>AI Coach:</strong> <a href='https://cadetcompass.netlify.app/chat' target='_blank' rel='noopener'>https://cadetcompass.netlify.app/chat</a></div>
+          <div style='margin-top:6px;'><strong>Student Toolkit hub:</strong> <a href='https://cadetcompass.netlify.app/toolkit' target='_blank' rel='noopener'>https://cadetcompass.netlify.app/toolkit</a></div>
+        </div>
+
+        <h3 class='h3' style='margin-top:14px;'>Suggested 2-minute judge walkthrough</h3>
+        <ol class='muted'>
+          <li>Open <a href='https://cadetcompass.netlify.app/' target='_blank' rel='noopener'>Home</a> and confirm it is a Grades 8–12 advising tool.</li>
+          <li>Open <a href='https://cadetcompass.netlify.app/roadmap' target='_blank' rel='noopener'>8–12 Roadmap</a> to see grade-by-grade guidance.</li>
+          <li>Open <a href='https://cadetcompass.netlify.app/chat' target='_blank' rel='noopener'>AI Coach</a> and click a “quick prompt” chip (Plan A/B/C, Academy vs ROTC).</li>
+          <li>Follow any “verify on official sources” links through the Toolkit.</li>
+        </ol>
+
+        <div class='small muted' style='margin-top:10px;'>
+          Note: The site supports a safe “local fallback” if the AI function is unavailable. This ensures students can still receive structured guidance without external AI access.
+        </div>
+      </div>
+
+      <div class='card'>
+        <h2 class='h2'>Source code (transparency)</h2>
+        <p class='muted'>
+          The project is open-source for review. The AI Coach is implemented as a Netlify Function and a front-end chat UI with a local knowledge fallback.
+        </p>
+
+        <div class='callout'>
+          <div><strong>GitHub repo:</strong> <a href='https://github.com/mrayhancem/Cadet-Compass' target='_blank' rel='noopener'>https://github.com/mrayhancem/Cadet-Compass</a></div>
+          <div style='margin-top:6px;'><strong>Chat UI logic:</strong> <a href='https://github.com/mrayhancem/Cadet-Compass/blob/main/docs/js/chatbot.js' target='_blank' rel='noopener'>docs/js/chatbot.js</a></div>
+        </div>
+
+        <h2 class='h2' style='margin-top:16px;'>Optional 4-minute video</h2>
+        <p class='muted'>
+          Only add this if you decide to include a short walkthrough video. If you do, host it with “anyone with the link” access and paste the URL below.
+        </p>
+        <div class='callout warn'>
+          <div><strong>Video link placeholder:</strong></div>
+          <div class='small muted'>https://(YOUR_VIDEO_LINK_HERE)</div>
+        </div>
+
+        <div class='small muted' style='margin-top:10px;'>
+          If the judges require video specifically, you can record a quick screen capture: open Home → Roadmap → AI Coach, run one prompt, show the Toolkit verification links.
+        </div>
+      </div>
+    </section>
   </main>
+
   <footer class='wrap foot'>
     <div>Cadet Compass • Track III Educator Project • Free hosting: GitHub Pages + Netlify</div>
     <div class='footLinks'><a href='credits.html'>Credits</a> • <a href='responsible-ai.html'>Responsible AI</a> • <a href='demo.html'>Demo</a></div>
   </footer>
-  <script src='js/app.js'></script>
 </body>
 </html>
