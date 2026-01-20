@@ -4,6 +4,7 @@
   <meta charset='utf-8' />
   <meta name='viewport' content='width=device-width, initial-scale=1' />
   <title>Responsible AI | Cadet Compass</title>
+  <meta name='description' content='Responsible AI policy for Cadet Compass: safety, privacy, verification, and limitations.' />
   <link rel='stylesheet' href='assets/styles.css' />
 </head>
 <body>
@@ -16,7 +17,7 @@
           <div class='subtitle'>AI-assisted military pathway advising (Grades 8–12)</div>
         </div>
       </div>
-      
+
       <nav class='links'>
         <a class='' href='index.html'>Home</a>
         <a class='' href='roadmap.html'>8–12 Roadmap</a>
@@ -26,35 +27,137 @@
         <a class='' href='toolkit.html'>Toolkit</a>
         <a class='' href='chat.html'>AI Coach</a>
       </nav>
-
     </div>
   </header>
-  <main class='wrap'>
-    
-<section class='card'>
-  <h1 class='h1'>Responsible AI</h1>
-  <p class='lead'>Cadet Compass uses AI to scale counseling-quality guidance while protecting student privacy and preventing misinformation.</p>
-  <h2 class='h2'>What this AI does</h2>
-  <ul class='muted'>
-    <li>Generates customized timelines and next steps based on grade level and pathway goals.</li>
-    <li>Summarizes options and points to official sources for verification.</li>
-    <li>Helps students structure resumes and interview stories without fabricating achievements.</li>
-  </ul>
-  <h2 class='h2'>What this AI does not do</h2>
-  <ul class='muted'>
-    <li>It does not make final admissions decisions.</li>
-    <li>It does not request or store sensitive personal data.</li>
-    <li>It does not promise eligibility or benefits; it instructs verification via official sources.</li>
-  </ul>
-  <h2 class='h2'>Student privacy</h2>
-  <p class='muted'>This site is designed to work without login. When the optional AI API is enabled, only the chat message is sent to the AI endpoint; no student identifiers are required.</p>
-</section>
 
+  <main class='wrap'>
+    <section class='card'>
+      <span class='pill'>Responsible AI</span>
+      <h1 class='h1'>Responsible AI and Safety Policy</h1>
+      <p class='lead'>
+        Cadet Compass is an educator-built advising website. The “AI Coach” feature is designed to provide
+        general, grade-appropriate guidance while consistently directing students to verify requirements on official sources.
+      </p>
+      <div class='callout warn'>
+        <strong>Non-advisory disclaimer:</strong> This tool is educational guidance only. It does not replace parents/guardians,
+        counselors, recruiters, or official program staff.
+      </div>
+    </section>
+
+    <section class='grid2'>
+      <div class='card'>
+        <h2 class='h2'>Safety goals</h2>
+        <ul class='muted'>
+          <li><strong>Protect students:</strong> avoid sensitive data collection and reduce risky decision-making.</li>
+          <li><strong>Prevent misinformation:</strong> emphasize verification and avoid “hard numeric promises.”</li>
+          <li><strong>Age/grade appropriateness:</strong> guidance scales from Grade 8 awareness to Grade 12 execution.</li>
+          <li><strong>Encourage informed choices:</strong> promote Plan A/B/C thinking and realistic alternatives.</li>
+        </ul>
+      </div>
+
+      <div class='card'>
+        <h2 class='h2'>Privacy and data minimization</h2>
+        <ul class='muted'>
+          <li>Users are warned: do not enter full name, address, SSN, medical details, or other sensitive data.</li>
+          <li>Prompts should use general details only (grade level, pathway interest, constraints).</li>
+          <li>No student database is used by Cadet Compass. The AI Coach does not require login.</li>
+        </ul>
+        <div class='small muted'>
+          If a student shares sensitive data anyway, the recommended action is to stop and restate the question in general terms.
+        </div>
+      </div>
+    </section>
+
+    <section class='grid2'>
+      <div class='card'>
+        <h2 class='h2'>Content boundaries</h2>
+        <ul class='muted'>
+          <li><strong>No operational guidance:</strong> the coach does not provide instructions that could enable wrongdoing or unsafe actions.</li>
+          <li><strong>No guaranteed outcomes:</strong> it will not promise appointments, scholarships, acceptance, enlistment eligibility, or dollar amounts.</li>
+          <li><strong>No exact deadline guarantees:</strong> deadlines vary by year and program; users are directed to official sources.</li>
+          <li><strong>Local counseling encouraged:</strong> students are encouraged to involve guardians and school counselors.</li>
+        </ul>
+      </div>
+
+      <div class='card'>
+        <h2 class='h2'>Verification practice</h2>
+        <p class='muted'>
+          The AI Coach uses a “verify-first” rule:
+        </p>
+        <ul class='muted'>
+          <li>Provide a structured plan (what to do next), then list what must be verified.</li>
+          <li>Point users to official pages consolidated in the Student Toolkit.</li>
+          <li>Recommend documenting sources (page title + date accessed) for key requirements.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class='card'>
+      <h2 class='h2'>Failure modes and mitigations</h2>
+      <div class='grid2'>
+        <div>
+          <div class='kicker'>Potential risk</div>
+          <ul class='muted'>
+            <li>AI hallucination or outdated info</li>
+            <li>Overconfidence / “hard promises”</li>
+            <li>Prompt injection (user asks the AI to ignore rules)</li>
+            <li>Student shares private data</li>
+          </ul>
+        </div>
+        <div>
+          <div class='kicker'>Mitigation in Cadet Compass</div>
+          <ul class='muted'>
+            <li>Always instruct “verify on official sources,” and link the Toolkit</li>
+            <li>System rules prohibit guarantees and require cautious language</li>
+            <li>Refuse rule-breaking requests; remain within scope</li>
+            <li>Prominent privacy warning + encourage general phrasing</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class='grid2'>
+      <div class='card'>
+        <h2 class='h2'>Local fallback (resilience)</h2>
+        <p class='muted'>
+          If the AI endpoint is unavailable, the chat UI automatically falls back to a local knowledge base
+          (<span class='small'>data/knowledge.json</span>) using simple keyword matching and returns the most relevant guidance blocks.
+        </p>
+        <div class='callout'>
+          <div class='small muted'>
+            This keeps the tool useful during outages and reduces dependence on external AI services for basic advising.
+          </div>
+        </div>
+      </div>
+
+      <div class='card'>
+        <h2 class='h2'>Human-in-the-loop expectation</h2>
+        <ul class='muted'>
+          <li>Students should discuss major decisions with guardians.</li>
+          <li>School counselors/CCMR advisors confirm course rigor, graduation requirements, and application planning.</li>
+          <li>Recruiter discussions should include a written checklist and verification of terms.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class='card'>
+      <h2 class='h2'>How the AI Coach is implemented</h2>
+      <p class='muted'>
+        The AI Coach uses a serverless API endpoint (Netlify Function) and a front-end chat UI.
+        The system prompt enforces the safety rules above.
+      </p>
+      <div class='callout'>
+        <div class='small muted'>
+          Implementation detail: the model is configurable via an environment variable (e.g., <strong>gpt-5-mini</strong>).
+          If the AI call fails, the UI indicates “local fallback used.”
+        </div>
+      </div>
+    </section>
   </main>
+
   <footer class='wrap foot'>
     <div>Cadet Compass • Track III Educator Project • Free hosting: GitHub Pages + Netlify</div>
     <div class='footLinks'><a href='credits.html'>Credits</a> • <a href='responsible-ai.html'>Responsible AI</a> • <a href='demo.html'>Demo</a></div>
   </footer>
-  <script src='js/app.js'></script>
 </body>
 </html>
