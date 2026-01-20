@@ -1,79 +1,439 @@
 <!doctype html>
-<html lang='en'>
+<html lang="en">
 <head>
-  <meta charset='utf-8' />
-  <meta name='viewport' content='width=device-width, initial-scale=1' />
-  <title>Service Academies | Cadet Compass</title>
-  <link rel='stylesheet' href='assets/styles.css' />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>U.S. Service Academies | Cadet Compass</title>
+  <meta name="description" content="Service Academy (Officer) pathway overview for grades 8–12: USMA, USNA, USAFA, USCGA, USMMA. Timeline, nominations, fitness, academics, and next steps." />
+  <link rel="stylesheet" href="./assets/styles.css" />
+
+  <style>
+    /* Page-specific layout helpers (kept inside the page so you don't need to touch CSS again) */
+    .academy-grid{ display:grid; grid-template-columns: 1.2fr .8fr; gap: 10px; }
+    .pill-row{ display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
+    .pill{
+      font-size: 12px;
+      color: var(--muted);
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      white-space: nowrap;
+    }
+    .mini-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .academy-hero-img{
+      width:100%;
+      height: 180px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.03);
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-bottom: 10px;
+    }
+    .academy-hero-img img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      display:block;
+      filter: saturate(1.05) contrast(1.05);
+    }
+    .cta-row{ display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; }
+    .subtle-note{ font-size:12px; color: var(--muted); margin-top:10px; }
+    @media (max-width: 900px){
+      .academy-grid{ grid-template-columns: 1fr; }
+      .mini-grid{ grid-template-columns: 1fr; }
+      .academy-hero-img{ height: 160px; }
+    }
+  </style>
 </head>
+
 <body>
-  <header class='top'>
-    <div class='wrap nav'>
-      <div class='brand'>
-        <img src='assets/compass.svg' alt='Cadet Compass logo' />
-        <div>
-          <div class='title'>Cadet Compass</div>
-          <div class='subtitle'>AI-assisted military pathway advising (Grades 8–12)</div>
+  <div class="top-nav">
+    <div style="display:flex; gap:10px; align-items:center;">
+      <a href="./index.html" style="font-weight:700; color: var(--text);">Cadet Compass</a>
+    </div>
+
+    <div style="display:flex; gap:6px; flex-wrap:wrap; justify-content:flex-end;">
+      <a href="./roadmap.html">8–12 Roadmap</a>
+      <a href="./academies.html" style="background: rgba(255,255,255,.06); color: var(--text);">Service Academies</a>
+      <a href="./rotc.html">ROTC</a>
+      <a href="./enlistment.html">Enlistment</a>
+      <a href="./resources.html">Student Toolkit</a>
+      <a class="btn" href="./chat.html" style="padding:6px 10px; border-radius:999px;">AI Coach</a>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="hero" style="margin-bottom: 22px;">
+      <div class="logo-wrap">
+        <img src="./assets/compass.svg" alt="Cadet Compass logo">
+      </div>
+
+      <div>
+        <h1>U.S. Service Academies (Officer Pathway)</h1>
+        <p class="sub">
+          Service Academies are federally funded four-year colleges that commission officers. They are highly competitive and timeline-driven.
+          Most applicants need a <strong>nomination</strong> (except USCGA) plus strong academics, leadership, fitness, and medical qualification.
+        </p>
+
+        <div class="cta-row">
+          <a class="btn primary" href="./roadmap.html">Use the 8–12 Roadmap</a>
+          <a class="btn" href="./resources.html">Open Student Toolkit</a>
+          <a class="btn" href="./chat.html">Ask the AI Coach</a>
+        </div>
+
+        <div class="pill-row">
+          <span class="pill">Key skill: leadership evidence</span>
+          <span class="pill">Key risk: “late discovery” in Grade 11</span>
+          <span class="pill">Best practice: build a backup plan (ROTC / other)</span>
         </div>
       </div>
-      
-      <nav class='links'>
-        <a class='' href='index.html'>Home</a>
-        <a class='' href='roadmap.html'>8–12 Roadmap</a>
-        <a class='active' href='academies.html'>Service Academies</a>
-        <a class='' href='rotc.html'>ROTC</a>
-        <a class='' href='enlistment.html'>Enlistment</a>
-        <a class='' href='toolkit.html'>Toolkit</a>
-        <a class='' href='chat.html'>AI Coach</a>
-      </nav>
-
     </div>
-  </header>
-  <main class='wrap'>
-    
-<section class='card'>
-  <span class='pill'>Officer Pathway</span>
-  <h1 class='h1'>U.S. Service Academies</h1>
-  <p class='lead'>Service Academies are federally-funded four-year colleges that commission officers. They are highly competitive and timeline-driven.</p>
-  <div class='grid3'>
-    <div class='card'><h2 class='h2'>USMA</h2><p class='muted'>United States Military Academy (West Point)</p><p><a href='https://www.westpoint.edu/admissions' target='_blank' rel='noopener'>Official admissions</a></p></div>
-    <div class='card'><h2 class='h2'>USNA</h2><p class='muted'>United States Naval Academy</p><p><a href='https://www.usna.edu/Admissions/' target='_blank' rel='noopener'>Official admissions</a></p></div>
-    <div class='card'><h2 class='h2'>USAFA</h2><p class='muted'>United States Air Force Academy</p><p><a href='https://www.academyadmissions.com/' target='_blank' rel='noopener'>Official admissions</a></p></div>
-    <div class='card'><h2 class='h2'>USCGA</h2><p class='muted'>United States Coast Guard Academy</p><p><a href='https://uscga.edu/admissions/' target='_blank' rel='noopener'>Official admissions</a></p></div>
-    <div class='card'><h2 class='h2'>USMMA</h2><p class='muted'>United States Merchant Marine Academy</p><p><a href='https://www.usmma.edu/admissions' target='_blank' rel='noopener'>Official admissions</a></p></div>
-  </div>
-</section>
 
-<section class='grid2'>
-  <div class='card'>
-    <h2 class='h2'>Academy readiness checklist (non-negotiables)</h2>
-    <ol class='muted'>
-      <li>Academic rigor + strong grades (verify current expectations on each official site).</li>
-      <li>Leadership roles and sustained involvement.</li>
-      <li>Physical readiness (train consistently; prepare for academy fitness assessments).</li>
-      <li>Strong character + references; interview readiness.</li>
-      <li>Medical qualification process (DoDMERB or academy-specific medical process).</li>
-      <li>Nomination requirements for academies that require them (verify by academy).</li>
-    </ol>
-    <div class='callout ok'><strong>Cadet Compass approach:</strong> build a primary plan + backup plan (ROTC) + safety plan (enlist then commission later).</div>
-  </div>
+    <div class="card">
+      <h2>Reality check: nominations, timing, and Texas context</h2>
+      <div class="mini-grid">
+        <div class="card" style="margin:0;">
+          <h2 style="margin:0 0 6px;">Nomination (most academies)</h2>
+          <ul style="margin:6px 0 0 18px;">
+            <li>Most academies require a nomination from a Member of Congress or other eligible nominating source.</li>
+            <li>Nomination timelines often run during Grade 11 into early Grade 12.</li>
+            <li>Strong applicants start planning before Grade 11 to avoid missing deadlines.</li>
+          </ul>
+        </div>
+        <div class="card" style="margin:0;">
+          <h2 style="margin:0 0 6px;">SST readiness overlay</h2>
+          <ul style="margin:6px 0 0 18px;">
+            <li>Protect graduation progress: credits, required assessments, attendance.</li>
+            <li>Keep a clean record: discipline and reliability matter in “whole-person” review.</li>
+            <li>Document leadership/service hours with dates and responsibilities.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="subtle-note">
+        This page provides advising guidance and official links. Final requirements and deadlines must be verified on each academy’s official admissions website.
+      </p>
+    </div>
 
-  <div class='card'>
-    <h2 class='h2'>Texas student notes</h2>
-    <ul class='muted'>
-      <li>Start the nomination conversation in Grade 10 and execute in Grade 11. Confirm current offices and processes via official congressional websites.</li>
-      <li>Use Cadet Compass Toolkit to build a leadership resume and interview story bank.</li>
-      <li>Plan SAT/ACT (and fee waivers if eligible) early; confirm whether each academy uses test scores in the current cycle.</li>
-    </ul>
-    <div class='callout warn'><strong>Accuracy rule:</strong> This site does not publish numeric cutoffs because they change. Always verify from official admissions pages.</div>
-  </div>
-</section>
+    <!-- =========================
+         USMA
+         ========================= -->
+    <div class="card">
+      <div class="academy-grid">
+        <div>
+          <h2 style="margin:0 0 6px;">USMA — United States Military Academy (West Point)</h2>
+          <p style="margin:0 0 10px;">
+            Army officer commissioning program with a strong leadership and academic model. Competitive selection emphasizes academics, leadership, fitness, and character.
+          </p>
 
-  </main>
-  <footer class='wrap foot'>
-    <div>Cadet Compass • Track III Educator Project • Free hosting: GitHub Pages + Netlify</div>
-    <div class='footLinks'><a href='credits.html'>Credits</a> • <a href='responsible-ai.html'>Responsible AI</a> • <a href='demo.html'>Demo</a></div>
-  </footer>
-  <script src='js/app.js'></script>
+          <div class="academy-hero-img">
+            <!-- Official / public domain source (DoD) – image may vary; layout remains stable if it fails -->
+            <a href="https://www.westpoint.edu/admissions" target="_blank" rel="noreferrer" style="display:block; width:100%; height:100%;">
+              <img src="https://media.defense.gov/branding/Images/og-image.jpg" alt="Official public-domain DoD image (visual placeholder)" />
+            </a>
+          </div>
+
+          <div class="mini-grid">
+            <div class="card" style="margin:0;">
+              <h2 style="margin:0 0 6px;">At a glance</h2>
+              <ul style="margin:6px 0 0 18px;">
+                <li>Path: Officer commissioning</li>
+                <li>Signals: rigorous academics + leadership + fitness</li>
+                <li>Common evidence: captain roles, club officer roles, service impact</li>
+              </ul>
+            </div>
+            <div class="card" style="margin:0;">
+              <h2 style="margin:0 0 6px;">Do now (any grade)</h2>
+              <ul style="margin:6px 0 0 18px;">
+                <li>Build a leadership log with measurable impact</li>
+                <li>Train consistently; track progress monthly</li>
+                <li>Keep course rigor and strong grades</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="card" style="margin:0;">
+            <h2 style="margin:0 0 6px;">Official admissions</h2>
+            <a class="btn primary" href="https://www.westpoint.edu/admissions" target="_blank" rel="noreferrer">Open USMA admissions</a>
+            <p class="subtle-note">Use official pages for up-to-date eligibility, deadlines, and required steps.</p>
+          </div>
+
+          <div class="card" style="margin-top:10px;">
+            <h2 style="margin:0 0 6px;">Fast readiness check</h2>
+            <ul style="margin:6px 0 0 18px;">
+              <li>Strong academics in math/science and writing</li>
+              <li>Leadership roles with sustained responsibility</li>
+              <li>Fitness consistency (not last-minute)</li>
+              <li>Organized documentation: awards, hours, roles, dates</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================
+         USNA
+         ========================= -->
+    <div class="card">
+      <div class="academy-grid">
+        <div>
+          <h2 style="margin:0 0 6px;">USNA — United States Naval Academy</h2>
+          <p style="margin:0 0 10px;">
+            Navy and Marine Corps officer commissioning program with strong STEM, leadership, and service expectations.
+          </p>
+
+          <div class="academy-hero-img">
+            <a href="https://www.usna.edu/Admissions/" target="_blank" rel="noreferrer" style="display:block; width:100%; height:100%;">
+              <img src="https://www.navy.mil/Portals/1/Navy%20Mil%20Images/branding/og-image.jpg" alt="Official U.S. Navy public-domain image (visual placeholder)" />
+            </a>
+          </div>
+
+          <div class="mini-grid">
+            <div class="card" style="margin:0;">
+              <h2 style="margin:0 0 6px;">At a glance</h2>
+              <ul style="margin:6px 0 0 18px;">
+                <li>Path: Navy/Marine officer commissioning</li>
+                <li>Signals: rigorous academics + leadership + fitness</li>
+                <li>Common evidence: team leadership, service commitment, STEM strength</li>
+              </ul>
+            </div>
+            <div class="card" style="margin:0;">
+              <h2 style="margin:0 0 6px;">Do now (any grade)</h2>
+              <ul style="margin:6px 0 0 18px;">
+                <li>Maintain strong grades; plan rigorous courses</li>
+                <li>Lead in at least one sustained activity</li>
+                <li>Practice interviews and professional communication</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="card" style="margin:0;">
+            <h2 style="margin:0 0 6px;">Official admissions</h2>
+            <a class="btn primary" href="https://www.usna.edu/Admissions/" target="_blank" rel="noreferrer">Open USNA admissions</a>
+            <p class="subtle-note">Verify the current nomination and application process on official pages.</p>
+          </div>
+
+          <div class="card" style="margin-top:10px;">
+            <h2 style="margin:0 0 6px;">Competitive profile (typical)</h2>
+            <ul style="margin:6px 0 0 18px;">
+              <li>Consistent academic rigor</li>
+              <li>Leadership progression (not a single title)</li>
+              <li>Fitness and medical readiness planning</li>
+              <li>Clear motivation for service</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================
+         USAFA
+         ========================= -->
+    <div class="card">
+      <div class="academy-grid">
+        <div>
+          <h2 style="margin:0 0 6px;">USAFA — United States Air Force Academy</h2>
+          <p style="margin:0 0 10px;">
+            Air Force officer commissioning program emphasizing academics, leadership, fitness, and character—often strong in STEM and aviation interest areas.
+          </p>
+
+          <div class="academy-hero-img">
+            <a href="https://www.academyadmissions.com/" target="_blank" rel="noreferrer" style="display:block; width:100%; height:100%;">
+              <img src="https://www.af.mil/Portals/1/Images/branding/og-image.jpg" alt="Official U.S. Air Force public-domain image (visual placeholder)" />
+            </a>
+          </div>
+
+          <div class="mini-grid">
+            <div class="card" style="margin:0;">
+              <h2 style="margin:0 0 6px;">At a glance</h2>
+              <ul style="margin:6px 0 0 18px;">
+                <li>Path: Air Force officer commissioning</li>
+                <li>Signals: strong academics + leadership + fitness</li>
+                <li>Common evidence: STEM strength, disciplined habits, leadership roles</li>
+              </ul>
+            </div>
+            <div class="card" style="margin:0;">
+              <h2 style="margin:0 0 6px;">Do now (any grade)</h2>
+              <ul style="margin:6px 0 0 18px;">
+                <li>Strengthen math/science and writing</li>
+                <li>Build leadership with measurable outcomes</li>
+                <li>Train fitness consistently; avoid “cram fitness”</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="card" style="margin:0;">
+            <h2 style="margin:0 0 6px;">Official admissions</h2>
+            <a class="btn primary" href="https://www.academyadmissions.com/" target="_blank" rel="noreferrer">Open USAFA admissions</a>
+            <p class="subtle-note">Confirm nomination requirements and application steps on official pages.</p>
+          </div>
+
+          <div class="card" style="margin-top:10px;">
+            <h2 style="margin:0 0 6px;">Suggested “focus stack”</h2>
+            <ul style="margin:6px 0 0 18px;">
+              <li>Academics: rigorous course plan + high performance</li>
+              <li>Leadership: roles + responsibility + results</li>
+              <li>Fitness: consistent training and readiness</li>
+              <li>Character: reliability and integrity evidence</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================
+         USCGA
+         ========================= -->
+    <div class="card">
+      <div class="academy-grid">
+        <div>
+          <h2 style="margin:0 0 6px;">USCGA — United States Coast Guard Academy</h2>
+          <p style="margin:0 0 10px;">
+            Coast Guard officer commissioning program. Often noted for a highly structured application process and strong academics/leadership expectations.
+          </p>
+
+          <div class="academy-hero-img">
+            <a href="https://uscga.edu/admissions/" target="_blank" rel="noreferrer" style="display:block; width:100%; height:100%;">
+              <img src="https://www.uscg.mil/Portals/0/Images/branding/og-image.jpg" alt="Official U.S. Coast Guard public-domain image (visual placeholder)" />
+            </a>
+          </div>
+
+          <div class="mini-grid">
+            <div class="card" style="margin:0;">
+              <h2 style="margin:0 0 6px;">At a glance</h2>
+              <ul style="margin:6px 0 0 18px;">
+                <li>Path: Coast Guard officer commissioning</li>
+                <li>Unique note: USCGA does not use the congressional nomination system in the same way as other academies</li>
+                <li>Signals: academics + leadership + fitness + character</li>
+              </ul>
+            </div>
+            <div class="card" style="margin:0;">
+              <h2 style="margin:0 0 6px;">Do now (any grade)</h2>
+              <ul style="margin:6px 0 0 18px;">
+                <li>Strengthen leadership evidence and community impact</li>
+                <li>Build organized documentation early</li>
+                <li>Prepare for structured application timelines</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="card" style="margin:0;">
+            <h2 style="margin:0 0 6px;">Official admissions</h2>
+            <a class="btn primary" href="https://uscga.edu/admissions/" target="_blank" rel="noreferrer">Open USCGA admissions</a>
+            <p class="subtle-note">Verify current application steps and deadlines on official pages.</p>
+          </div>
+
+          <div class="card" style="margin-top:10px;">
+            <h2 style="margin:0 0 6px;">Good-fit indicators</h2>
+            <ul style="margin:6px 0 0 18px;">
+              <li>Service motivation and responsibility</li>
+              <li>Academic strength and disciplined habits</li>
+              <li>Leadership with real responsibility</li>
+              <li>Fitness readiness</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================
+         USMMA
+         ========================= -->
+    <div class="card">
+      <div class="academy-grid">
+        <div>
+          <h2 style="margin:0 0 6px;">USMMA — United States Merchant Marine Academy</h2>
+          <p style="margin:0 0 10px;">
+            Officer commissioning pathway with a maritime and transportation focus. Applicants should review official admissions guidance closely.
+          </p>
+
+          <div class="academy-hero-img">
+            <a href="https://www.usmma.edu/admissions" target="_blank" rel="noreferrer" style="display:block; width:100%; height:100%;">
+              <img src="https://www.maritime.dot.gov/sites/marad.dot.gov/files/2020-09/MARAD_Seal.png" alt="U.S. DOT / MARAD seal (official)" style="object-fit:contain; padding:18px; background: rgba(255,255,255,.02);" />
+            </a>
+          </div>
+
+          <div class="mini-grid">
+            <div class="card" style="margin:0;">
+              <h2 style="margin:0 0 6px;">At a glance</h2>
+              <ul style="margin:6px 0 0 18px;">
+                <li>Path: Maritime-focused officer commissioning</li>
+                <li>Signals: academics + leadership + fitness + documentation</li>
+                <li>Fit: students interested in maritime, logistics, engineering, operations</li>
+              </ul>
+            </div>
+            <div class="card" style="margin:0;">
+              <h2 style="margin:0 0 6px;">Do now (any grade)</h2>
+              <ul style="margin:6px 0 0 18px;">
+                <li>Build strong math/science and writing habits</li>
+                <li>Demonstrate sustained responsibility and leadership</li>
+                <li>Organize documentation early for timeline-driven applications</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="card" style="margin:0;">
+            <h2 style="margin:0 0 6px;">Official admissions</h2>
+            <a class="btn primary" href="https://www.usmma.edu/admissions" target="_blank" rel="noreferrer">Open USMMA admissions</a>
+            <p class="subtle-note">Confirm nomination requirements and all steps on official pages.</p>
+          </div>
+
+          <div class="card" style="margin-top:10px;">
+            <h2 style="margin:0 0 6px;">Advisor checklist</h2>
+            <ul style="margin:6px 0 0 18px;">
+              <li>Maintain a clean, well-documented activity log</li>
+              <li>Plan fitness and medical readiness early</li>
+              <li>Build a backup plan (ROTC / other)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Next step</h2>
+      <div class="mini-grid">
+        <div class="card" style="margin:0;">
+          <h2 style="margin:0 0 6px;">Build the plan</h2>
+          <ul style="margin:6px 0 0 18px;">
+            <li>Use the Roadmap page to generate a grade-by-grade plan.</li>
+            <li>Use the Student Toolkit for templates (resume, activity log, checklists).</li>
+            <li>Use the AI Coach to explain your next steps in plain language.</li>
+          </ul>
+        </div>
+        <div class="card" style="margin:0;">
+          <h2 style="margin:0 0 6px;">Backup plan (non-negotiable)</h2>
+          <ul style="margin:6px 0 0 18px;">
+            <li>Primary: Service Academy</li>
+            <li>Backup: ROTC scholarship + college admissions</li>
+            <li>Additional options: Guard/Reserve or enlistment → later commissioning</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      Cadet Compass • Track III Educator Project • Free hosting: GitHub Pages + Netlify •
+      <a href="./credits.html">Credits</a> • <a href="./responsible-ai.html">Responsible AI</a> • <a href="./demo.html">Demo</a>
+    </div>
+
+  </div>
 </body>
 </html>
