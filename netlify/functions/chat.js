@@ -56,13 +56,14 @@ Rules:
 
   // Responses API payload (do NOT send temperature)
   const body = {
-    model,
-    input: [
-      { role: "system", content: [{ type: "text", text: system }] },
-      { role: "user", content: [{ type: "text", text: message }] },
-    ],
-    max_output_tokens: 600,
-  };
+  model,
+  input: [
+    { role: "system", content: [{ type: "input_text", text: system }] },
+    { role: "user", content: [{ type: "input_text", text: message }] },
+  ],
+  max_output_tokens: 600,
+};
+
 
   try {
     const resp = await fetch("https://api.openai.com/v1/responses", {
