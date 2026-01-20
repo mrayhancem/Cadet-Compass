@@ -11,7 +11,7 @@ Service Academies, ROTC, enlistment, National Guard, and Reserves.
 ## Deploy (recommended path)
 ### A) Frontend on GitHub Pages (free)
 1. Create a GitHub repo named `cadet-compass`.
-2. Upload the contents of `site/` to the repo root OR keep `site/` and configure GitHub Pages to publish `/site`.
+2. Upload the contents of `docs/` to the repo root OR keep `docs/` and configure GitHub Pages to publish `/site`.
 3. Enable **Settings → Pages**.
 
 ### B) AI coach on Netlify (free)
@@ -28,9 +28,9 @@ Service Academies, ROTC, enlistment, National Guard, and Reserves.
 Do not enter personally identifying student information into the chat.
 
 ## Local preview
-Open `site/index.html` in a browser.
+Open `docs/index.html` in a browser.
 
 ## Edit content
-- Text: edit the `.html` files in `site/`.
-- Knowledge base: `site/data/knowledge_base.json`.
+- Text: edit the `.html` files in `docs/`.
+- Knowledge base: `docs/data/knowledge_base.json`.
 
